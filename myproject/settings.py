@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # Otras apps
-    'apps.users',  # Agrega la app 'users'
+    # 'apps.users',  # Agrega la app 'users'
+    'MVT_discoverd',
 ]
 
 MIDDLEWARE = [

@@ -3,6 +3,9 @@ myenv/
 env/
 venv/
 
+# archivo de configuracion de comandos
+.txt
+
 # Archivos de Python compilados
 *.pyc
 __pycache__/

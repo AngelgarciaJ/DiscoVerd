@@ -1,0 +1,13 @@
+creacion de entorno virtual en anaconda
+-> conda create --name myenv python=3.10
+--> conda activate myenv
+
+
+comandos para creacion de proyect
+-> pip install django
+-- django-admin --version
+
+-> django-admin startproject myproject
+-- python manage.py runserver
+
+

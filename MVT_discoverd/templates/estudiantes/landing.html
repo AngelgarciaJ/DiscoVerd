@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/landing.css' %}">
+    <title>DiscoVerd - Estudiantes</title>
+</head>
+<body>
+    <header>
+        <h1>Bienvenido a DiscoVerd</h1>
+        <nav>
+            <a href="{% url 'login_estudiantes' %}">Iniciar Sesión</a>
+            <a href="{% url 'registro_estudiantes' %}">Registrarse</a>
+        </nav>
+    </header>
+    <section>
+        <h2>Conecta con eventos extracurriculares</h2>
+        <p>DiscoVerd es tu plataforma para descubrir eventos según tus intereses.</p>
+        <a href="{% url 'registro_estudiantes' %}" class="cta">Regístrate ahora</a>
+    </section>
+</body>
+</html>
