@@ -1,0 +1,47 @@
+/* Tipografía general */
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Encabezado */
+.logo {
+    width: 150px;
+}
+
+h2 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+}
+
+/* Formulario de Registro */
+.registro-section {
+    background: linear-gradient(to right, #f5f7fa, #c3cfe2); /* Degradado cálido */
+    padding: 3rem 0;
+}
+
+.form-label {
+    font-weight: 500;
+}
+
+.btn-primary {
+    background-color: #FFA500;
+    border-color: #FFA500;
+}
+
+.btn-primary:hover {
+    background-color: #FF8C00;
+    border-color: #FF8C00;
+}
+
+/* Pie de página */
+.footer {
+    background-color: #333;
+}
+
+.footer a {
+    color: #FFA500;
+}
+
+.footer a:hover {
+    color: #FF8C00;
+}

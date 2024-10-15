@@ -1,0 +1,104 @@
+/* dashboard.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #121212;
+    color: #ffffff;
+}
+
+.container {
+    display: flex;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #1E1E1E;
+    height: 100vh;
+    padding: 20px;
+    position: fixed;
+}
+
+.sidebar .logo img {
+    width: 100%;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+.sidebar ul li {
+    margin-bottom: 20px;
+}
+
+.sidebar ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 18px;
+    display: block;
+    padding: 10px;
+    background-color: #333333;
+    border-radius: 5px;
+}
+
+.sidebar ul li a:hover {
+    background-color: #444444;
+}
+
+.main-content {
+    margin-left: 270px;
+    padding: 20px;
+    width: calc(100% - 270px);
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profile-btn {
+    padding: 10px 20px;
+    background-color: #3a3a3a;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.event-list {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.event-item {
+    background-color: #2A2A2A;
+    padding: 20px;
+    width: 250px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.event-item img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.event-item p {
+    margin: 10px 0;
+}
+
+.event-item a {
+    padding: 10px 15px;
+    background-color: #444444;
+    border-radius: 5px;
+    color: white;
+    text-decoration: none;
+}
+
+.event-item a:hover {
+    background-color: #555555;
+}

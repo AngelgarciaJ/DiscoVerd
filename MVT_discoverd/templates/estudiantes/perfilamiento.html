@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfilamiento de Estudiantes - DiscoVerd</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet"> <!-- Enlazamos nuestro CSS personalizado -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Lato:wght@300&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Encabezado -->
+    <header class="bg-white py-3 border-bottom">
+        <div class="container d-flex justify-content-between align-items-center">
+            <img src="{% static 'img/logo.png' %}" alt="Logo" class="logo">
+            <nav>
+                <ul class="nav">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'landing_estudiantes' %}">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Dashboard</a></li> <!-- corregir enalce : {% url 'dashboard_estudiantes' %}c-->
+                    <li class="nav-item"><a class="nav-link" href="#">Eventos</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Formulario de perfilamiento -->
+    <section class="perfilamiento-section py-5">
+        <div class="container">
+            <h2 class="mb-4">Perfilamiento de Estudiantes</h2>
+            <form method="POST">
+                {% csrf_token %}
+                
+                <!-- Intereses -->
+                <div class="mb-3">
+                    <label for="intereses" class="form-label">Intereses</label><br>
+                    <input type="checkbox" name="intereses" value="Ciencia"> Ciencia<br>
+                    <input type="checkbox" name="intereses" value="Tecnología"> Tecnología<br>
+                    <input type="checkbox" name="intereses" value="Arte"> Arte<br>
+                    <input type="checkbox" name="intereses" value="Deportes"> Deportes<br>
+                    <input type="checkbox" name="intereses" value="Emprendimiento"> Emprendimiento<br>
+                    <input type="checkbox" name="intereses" value="Voluntariado"> Voluntariado<br>
+                </div>
+
+                <!-- Nivel de Estudio -->
+                <div class="mb-3">
+                    <label for="nivel_estudio" class="form-label">Nivel de Estudio</label>
+                    <select class="form-select" id="nivel_estudio" name="nivel_estudio">
+                        <option value="Primer año">Primer año</option>
+                        <option value="Segundo año">Segundo año</option>
+                        <option value="Tercer año">Tercer año</option>
+                        <option value="Cuarto año">Cuarto año</option>
+                        <option value="Quinto año">Quinto año</option>
+                    </select>
+                </div>
+
+                <!-- Disponibilidad -->
+                <div class="mb-3">
+                    <label for="disponibilidad" class="form-label">Disponibilidad</label><br>
+                    <input type="checkbox" name="disponibilidad" value="Mañanas"> Mañanas<br>
+                    <input type="checkbox" name="disponibilidad" value="Tardes"> Tardes<br>
+                    <input type="checkbox" name="disponibilidad" value="Noches"> Noches<br>
+                    <input type="checkbox" name="disponibilidad" value="Fines de Semana"> Fines de Semana<br>
+                </div>
+
+                <!-- Modo de Participación -->
+                <div class="mb-3">
+                    <label for="modo_participacion" class="form-label">Modo de Participación Preferido</label><br>
+                    <input type="radio" name="modo_participacion" value="Presencial"> Presencial<br>
+                    <input type="radio" name="modo_participacion" value="Virtual"> Virtual<br>
+                </div>
+
+                <!-- Objetivos -->
+                <div class="mb-3">
+                    <label for="objetivos" class="form-label">Objetivos Personales</label>
+                    <textarea class="form-control" id="objetivos" name="objetivos" rows="3"></textarea>
+                </div>
+
+                <!-- Ubicación -->
+                <div class="mb-3">
+                    <label for="ubicacion" class="form-label">Ubicación (Ciudad)</label>
+                    <input type="text" class="form-control" id="ubicacion" name="ubicacion" required>
+                </div>
+
+                <!-- Asistencia previa -->
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="ha_asistido_eventos" name="ha_asistido_eventos">
+                    <label class="form-check-label" for="ha_asistido_eventos">He asistido a eventos anteriormente</label>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100">Guardar Perfil</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Pie de página -->
+    <footer class="footer bg-dark text-white py-4">
+        <div class="container text-center">
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="#" class="text-white">Facebook</a></li>
+                <li class="list-inline-item"><a href="#" class="text-white">Twitter</a></li>
+                <li class="list-inline-item"><a href="#" class="text-white">Instagram</a></li>
+            </ul>
+            <p>&copy; 2024 DiscoVerd. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
