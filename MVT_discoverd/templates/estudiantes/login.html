@@ -41,11 +41,11 @@
     <!-- Encabezado y menú -->
     <header class="bg-white py-3 border-bottom">
         <div class="container d-flex justify-content-between align-items-center">
-            <img src="{% static 'img/logo.png' %}" alt="Logo" class="logo">
+            <img src="{% static 'img/logos/FINES1.png' %}" alt="Logo" class="logo">
             <nav>
                 <ul class="nav">
-                    <li class="nav-item"><a class="nav-link" href="#">Inicio</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Registrarse</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'login_estudiantes' %}">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'registro_estudiantes' %}">Registrarse</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Acerca de</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Eventos</a></li>
                 </ul>
@@ -68,7 +68,7 @@
                 <!-- Formulario de login -->
                 <div class="col-lg-6 bg-light p-5">
                     <h3 class="mb-4">Iniciar Sesión</h3>
-                    <form action="{% url 'login' %}" method="POST">
+                    <form action="{% url 'login_estudiantes' %}" method="POST">
                         {% csrf_token %}
                         <div class="form-group mb-3">
                             <label for="email">Correo electrónico</label>

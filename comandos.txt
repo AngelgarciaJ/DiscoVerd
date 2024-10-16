@@ -11,3 +11,8 @@ comandos para creacion de proyect
 -- python manage.py runserver
 
 
+--> para requerimientos
+-- pip freeze > requirements.txt
+
+
+
