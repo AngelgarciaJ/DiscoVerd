@@ -8,6 +8,42 @@ h3 {
     font-weight: 600;
 }
 
+/* Header personalizado */
+.custom-header {
+    border-bottom: 1px solid #e0e0e0;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+}
+
+/* Tamaño del logo */
+.logo {
+    width: 50px;
+    height: auto;
+}
+
+/* Enlace del logo */
+.custom-header a {
+    color: #0d6efd; /* Color azul primario */
+    font-weight: bold;
+}
+
+/* Estilo para los enlaces de navegación */
+.custom-nav-link {
+    color: #0d6efd; /* Azul primario */
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.custom-nav-link:hover {
+    color: #0056b3; /* Azul oscuro en hover */
+    text-decoration: underline;
+}
+
+/* Añadir sombra suave */
+.shadow-sm {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
 /* Imagen y formulario */
 .login-section {
     min-height: 80vh;
@@ -20,6 +56,7 @@ h3 {
     object-fit: cover;
 }
 
+/* Botón principal */
 .btn-primary {
     background-color: #FFA500;
     border-color: #FFA500;
