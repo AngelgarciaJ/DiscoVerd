@@ -1,26 +1,4 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    {% load static %}
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Estudiantes - DiscoVerd</title>
-</head>
-<body>
-    <h2>Iniciar Sesión Estudiantes</h2>
-    {% if error %}
-        <p style="color:red;">{{ error }}</p>
-    {% endif %}
-    <form method="POST">
-        {% csrf_token %}
-        <label for="username">Usuario:</label>
-        <input type="text" id="username" name="username">
-        <label for="password">Contraseña:</label>
-        <input type="password" id="password" name="password">
-        <button type="submit">Ingresar</button>
-    </form>
-</body>
-</html> -->
+
 
 <!DOCTYPE html>
 <html lang="es">
@@ -28,21 +6,26 @@
     {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - DiscoVerd</title>
+    <title>Login Estudiantes - DiscoVerd</title>
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="{% static 'css/estudiantes/login.css' %}" rel="stylesheet"> <!-- Estilos personalizados -->
-    <!-- Google Fonts: Poppins y Lato -->
+    
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Lato:wght@300&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <!-- Encabezado y menú -->
-    <header class="bg-white py-3 border-bottom">
+ <!-- Encabezado y menú -->
+    <header class="custom-header bg-white py-3 border-bottom">
         <div class="container d-flex justify-content-between align-items-center">
-            <img src="{% static 'img/logos/FINES1.png' %}" alt="Logo" class="logo">
-            <nav>
+            <!-- Logo alineado a la izquierda -->
+            <a href="{% url 'login_estudiantes' %}" class="header-logo me-auto">
+                <img src="{% static 'img/estudiantes/imagen2.jpg' %}" class="logo" alt="Logo DiscoVerd">
+            </a>
+            <!-- Navegación a la derecha -->
+            <nav class="ms-auto">
                 <ul class="nav">
                     <li class="nav-item"><a class="nav-link" href="{% url 'login_estudiantes' %}">Inicio</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'registro_estudiantes' %}">Registrarse</a></li>
@@ -53,47 +36,55 @@
         </div>
     </header>
 
-    <!-- Formulario de login -->
-    <section class="login-section d-flex align-items-center justify-content-center">
-        <div class="container">
-            <div class="row g-0">
-                <!-- Imagen de la izquierda -->
-                <div class="col-lg-6 d-none d-lg-block bg-image">
-                    <img src="{% static 'img/estudiantes/img_registro.jpg' %}" class="img-fluid" alt="Imagen de estudiantes">
-                    <div class="text-center mt-4">
-                        <a href="#" class="btn btn-primary">Registrarse</a>
+    
+    <!-- Sección del formulario de login -->
+    <main>
+        <section class="login-section d-flex align-items-center justify-content-center py-5">
+            <div class="container">
+                <div class="row g-0 shadow-lg rounded">
+                    <!-- Imagen de la izquierda -->
+                    <div class="col-lg-6 d-none d-lg-flex align-items-center">
+                        <div class="position-relative w-100 h-100">
+                            <img src="{% static 'img/estudiantes/imagen1.png' %}" class="img-fluid w-100 h-100" alt="Imagen de estudiantes" style="object-fit: cover;">
+                            <div class="position-absolute bottom-0 start-50 translate-middle-x text-center mb-4">
+                                <a href="{% url 'registro_estudiantes' %}" class="btn btn-primary">Registrarse</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Formulario de login -->
+                    <div class="col-lg-6 bg-light p-5">
+                        <h3 class="mb-4 text-center">Iniciar Sesión</h3>
+                        {% if error %}
+                            <p class="text-danger text-center">{{ error }}</p>
+                        {% endif %}
+                        <form action="{% url 'login_estudiantes' %}" method="POST">
+                            {% csrf_token %}
+                            <div class="form-group mb-3">
+                                <label for="email" class="form-label">Correo electrónico</label>
+                                <input type="email" class="form-control" id="email" name="email" placeholder="ejemplo@dominio.com" required>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label for="password" class="form-label">Contraseña</label>
+                                <input type="password" class="form-control" id="password" name="password" placeholder="********" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Iniciar Sesión</button>
+                        </form>
                     </div>
                 </div>
-
-                <!-- Formulario de login -->
-                <div class="col-lg-6 bg-light p-5">
-                    <h3 class="mb-4">Iniciar Sesión</h3>
-                    <form action="{% url 'login_estudiantes' %}" method="POST">
-                        {% csrf_token %}
-                        <div class="form-group mb-3">
-                            <label for="email">Correo electrónico</label>
-                            <input type="email" class="form-control" id="email" name="email" required>
-                        </div>
-                        <div class="form-group mb-4">
-                            <label for="password">Contraseña</label>
-                            <input type="password" class="form-control" id="password" name="password" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary w-100">Iniciar Sesión</button>
-                    </form>
-                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <!-- Pie de página -->
     <footer class="footer bg-dark text-white py-4">
         <div class="container text-center">
-            <ul class="list-inline">
+            <ul class="list-inline mb-3">
                 <li class="list-inline-item"><a href="#" class="text-white">Facebook</a></li>
                 <li class="list-inline-item"><a href="#" class="text-white">Twitter</a></li>
                 <li class="list-inline-item"><a href="#" class="text-white">Instagram</a></li>
             </ul>
-            <p>&copy; 2024 DiscoVerd. Todos los derechos reservados.</p>
+            <p class="mb-0">&copy; 2024 DiscoVerd. Todos los derechos reservados.</p>
         </div>
     </footer>
 
