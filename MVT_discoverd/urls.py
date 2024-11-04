@@ -17,9 +17,9 @@ urlpatterns = [
     path('estudiantes/perfilamiento/', views.perfilamiento_estudiantes, name='perfilamiento_estudiantes'),
     # path('estudiantes/dashboard/', views.dashboard_estudiantes, name='dashboard_estudiantes'),
     # # para dasboard
-    # path('dashboard/', views.dashboard_estudiantes, name='dashboard_estudiante'),
-    # path('eventos/<int:evento_id>/', views.evento_detalle, name='evento_detalle'),
-    # path('perfil/', views.perfil_estudiante, name='perfil_estudiante'),
+    path('dashboard/', views.dashboard_estudiantes, name='dashboard_estudiantes'),
+    path('eventos/<int:evento_id>/', views.evento_detalle, name='evento_detalle'),
+    path('perfil/', views.perfil_estudiante, name='perfil_estudiante'),
     # # path('eventos_generales/', views.eventos_generales, name='eventos_generales'),
     # # path('estadisticas/', views.estadisticas_dashboard, name='estadisticas'),
 ]

@@ -100,7 +100,14 @@ body {
 }
 
 .footer a:hover {
-    color: #FF8C00;
+    color: #FF8C00; 
+/* Encabezado (logo) */
+.logo {
+    max-width: 50px; /* Tamaño máximo del logo */
+    height: auto;
+}
+
+
 }
 
 /* Responsividad */
