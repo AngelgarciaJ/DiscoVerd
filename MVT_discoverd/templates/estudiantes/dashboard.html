@@ -1,61 +1,40 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Estudiantes</title>
-    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
-</head>
-<body>
-    <div class="container">
-        <!-- Barra de navegación izquierda -->
-        <nav class="sidebar">
-            <div class="logo">
-                <img src="{% static 'img/logo.png' %}" alt="Logo">
+<div class="container">
+    <nav class="sidebar">
+        <!-- Logo y enlaces de navegación -->
+        <ul>
+            <li><a href="{% url 'eventos_generales' %}">Eventos</a></li>
+            <li><a href="{% url 'estadisticas' %}">Dashboard con estadísticas</a></li>
+            <li><a href="{% url 'perfil_estudiante' %}">Perfil</a></li>
+        </ul>
+    </nav>
+
+    <div class="main-content">
+        <header>
+            <h1>Bienvenido, {{ user.username }}</h1>
+        </header>
+
+        <section class="events">
+            <h2>Próximos eventos inscritos</h2>
+            <div class="event-list">
+                {% for evento in eventos_inscritos %}
+                <div class="event-item">
+                    <img src="{{ evento.imagen.url }}" alt="{{ evento.nombre }}">
+                    <p>{{ evento.nombre }}</p>
+                    <a href="{% url 'evento_detalle' evento.id %}">Ver detalles</a>
+                </div>
+                {% endfor %}
             </div>
-            <ul>
-                <li><a href="{% url 'eventos_generales' %}">Eventos</a></li>
-                <li><a href="{% url 'estadisticas' %}">Dashboard con estadísticas</a></li>
-                <li><a href="{% url 'perfil_estudiante' %}">Perfil</a></li>
-                <!-- Comentado: Ventana emergente de notificaciones -->
-                <!-- <li><a href="#">Notificaciones <span class="icono">🔔</span></a></li> -->
-            </ul>
-        </nav>
 
-        <!-- Contenido principal -->
-        <div class="main-content">
-            <header>
-                <h1>Bienvenido, {{ user.username }}</h1>
-                <a href="{% url 'perfil_estudiante' %}" class="profile-btn">Perfil</a>
-            </header>
-
-            <section class="events">
-                <h2>Próximos eventos inscritos</h2>
-                <div class="event-list">
-                    {% for evento in eventos_inscritos %}
-                    <div class="event-item">
-                        <img src="{% static 'img/evento.png' %}" alt="Evento">
-                        <p>{{ evento.nombre }}</p>
-                        <a href="{% url 'evento_detalle' evento.id %}">Ver detalles</a>
-                    </div>
-                    {% endfor %}
+            <h2>Eventos recomendados</h2>
+            <div class="event-list">
+                {% for evento in eventos_recomendados %}
+                <div class="event-item">
+                    <img src="{{ evento.imagen.url }}" alt="{{ evento.nombre }}">
+                    <p>{{ evento.nombre }}</p>
+                    <a href="{% url 'evento_detalle' evento.id %}">Inscribirse</a>
                 </div>
-
-                <h2>Eventos recomendados</h2>
-                <div class="event-list">
-                    {% for evento in eventos_recomendados %}
-                    <div class="event-item">
-                        <img src="{% static 'img/evento.png' %}" alt="Evento">
-                        <p>{{ evento.nombre }}</p>
-                        <a href="{% url 'evento_detalle' evento.id %}">Inscribirse</a>
-                    </div>
-                    {% endfor %}
-                </div>
-            </section>
-        </div>
+                {% endfor %}
+            </div>
+        </section>
     </div>
-
-    <!-- JavaScript para abrir ventanas emergentes -->
-    <script src="{% static 'js/dashboard.js' %}"></script>
-</body>
-</html>
+</div>
