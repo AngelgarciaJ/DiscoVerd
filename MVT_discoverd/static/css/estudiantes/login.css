@@ -1,43 +1,14 @@
 /* Tipografía y diseño global */
 body {
     font-family: 'Poppins', sans-serif;
-    color: #333;
-    background-color: #f0f2f5;
-    margin: 0;
-    padding: 0;
 }
 
-/* Encabezado y posicionamiento del logo */
-.custom-header {
-    padding: 1rem 0;
+h3 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
 }
 
-.header-logo {
-    display: flex;
-    align-items: center;
-}
-
-.logo {
-    max-width: 100px; /* Tamaño ajustado del logo */
-    height: auto;
-}
-
-.nav {
-    gap: 1.5rem; /* Espacio entre los enlaces de navegación */
-}
-
-.nav-link {
-    color: #333;
-    font-weight: 500;
-    transition: color 0.3s ease;
-}
-
-.nav-link:hover {
-    color: #FFA500;
-}
-
-
-/* Otros estilos del layout */
+/* Imagen y formulario */
 .login-section {
     min-height: 80vh;
     background: linear-gradient(to right, #f5f7fa, #c3cfe2);
@@ -66,6 +37,7 @@ body {
     border-radius: 0.25rem;
 }
 
+/* Botón principal */
 .btn-primary {
     background-color: #FFA500;
     border-color: #FFA500;
