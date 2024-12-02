@@ -1,0 +1,177 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DiscoVerd - Eventos Universitarios</title>
+    
+    <!-- Mantener ambos archivos CSS -->
+    <link rel="stylesheet" href="{% static 'css/estudiantes/Pantalla_P.css' %}">
+    <link rel="stylesheet" href="{% static 'css/estudiantes/chat_bot.css' %}">
+    <link rel="stylesheet" href="{% static 'css/estudiantes/scraping.css' %}">
+</head>
+
+<body>
+    <div class="dashboard">
+        <!-- Header -->
+        <header class="header">
+            <div class="header__container">
+                <!-- Logo Section -->
+                <div class="header__logo">
+                    <img src="{% static 'img/logos/FINESI.png' %}" alt="DiscoVerd" class="header__logo-img">
+                    <span class="header__logo-text">DiscoVerd</span>
+                </div> 
+
+                <!-- User Section -->
+                <div class="user">
+                    <!-- Navigation -->
+                    <nav class="nav">
+                        <a href="{% url 'perfil' %}" class="nav__link">
+                            <i class="fas fa-user"></i>
+                            <span class="nav__text hidden-mobile">Perfil</span>
+                        </a>
+                        
+                        <a href="{% url 'mis_eventos' %}" class="nav__link">
+                            <i class="fas fa-calendar"></i>
+                            <span class="nav__text hidden-mobile">Mis Eventos</span>
+                        </a>
+                        
+                        <a href="{% url 'landing_estudiantes' %}" class="nav_link nav_link--logout">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span class="nav__text hidden-mobile">Cerrar Sesión</span>
+                        </a>
+
+                    </nav>
+                </div>
+
+                <!-- User Info -->
+                <div class="user__avatar">
+                    <span class="user__initials">{{ user.first_name|first }}</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Contenido principal aqui va el SCRAPING-->
+        <main class="main">
+            <div class="seccion-scraping">
+                <div class="seccion-scraping">
+                    <div class="container mx-auto px-4 py-8">
+                        <header class="text-center mb-12">
+                            <h2 class="text-3xl font-bold text-gray-800 mb-2">Eventos Universitarios</h2>
+                            <p class="text-gray-600">Última actualización: {{ timestamp }}</p>
+                        </header>
+                
+                        <!-- Contenedor de eventos -->
+                        <div id="eventos-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {% for evento in eventos %}
+                            <article class="evento-card bg-white rounded-lg overflow-hidden shadow-lg">
+                                <div class="relative">
+                                    <div class="absolute top-0 right-0 left-0 p-4 bg-gradient-to-b from-black/50 to-transparent">
+                                        <span class="universidad-tag text-white px-3 py-1 rounded-full text-sm">
+                                            {{ evento.nombre_universidad }}
+                                        </span>
+                                    </div>
+                                    {% if evento.imagen %}
+                                    <img src="{{ evento.imagen }}" alt="Imagen del evento" class="w-full h-48 object-cover">
+                                    {% else %}
+                                    <img src="https://picsum.photos/400/200" alt="Imagen por defecto" class="w-full h-48 object-cover">
+                                    {% endif %}
+                                </div>
+                                
+                                <div class="p-6">
+                                    <h3 class="text-xl font-bold text-gray-800 mb-2 line-clamp-2">
+                                        {{ evento.titulo }}
+                                    </h3>
+                                    <time class="text-sm text-gray-600 mb-4 block">
+                                        {{ evento.fecha }}
+                                    </time>
+                                    <p class="text-gray-600 mb-4 line-clamp-3">
+                                        {{ evento.descripcion }}
+                                    </p>
+                                    <a href="{{ evento.url_origen }}" 
+                                       target="_blank"
+                                       class="inline-block bg-blue-500 text-white px-6 py-2 rounded-full hover:bg-blue-600 transition">
+                                        Ver más →
+                                    </a>
+                                </div>
+                            </article>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="pagination-container">
+                <button id="prev-btn" class="pagination-btn" onclick="cambiarPagina('prev')">← Anterior</button>
+                <span id="page-indicator">Página 1</span>
+                <button id="next-btn" class="pagination-btn" onclick="cambiarPagina('next')">Siguiente →</button>
+            </div>
+            
+        </main>
+<!-- Eventos de Organizadores MENOS ESTOO-->
+<section>
+    <h2 class="text-2xl font-bold mb-4">Próximos Eventos</h2>
+    <div class="space-y-4">
+        {% for evento in eventos_organizador %}
+        <div class="bg-white rounded-lg shadow-lg p-4">
+            <div class="flex items-center space-x-4">
+                <div class="flex-shrink-0">
+                    {% if evento.imagen %}
+                    <img src="{{ evento.imagen.url }}" alt="{{ evento.titulo }}" class="w-24 h-24 object-cover rounded">
+                    {% else %}
+                    <div class="w-24 h-24 bg-gray-200 rounded flex items-center justify-center">
+                        <span class="text-gray-500">Sin imagen</span>
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="flex-1">
+                    <h3 class="text-lg font-semibold">{{ evento.titulo }}</h3>
+                    <p class="text-sm text-gray-600">{{ evento.descripcion|truncatechars:150 }}</p>
+                    <div class="mt-2 flex items-center space-x-4">
+                        <span class="text-sm text-gray-500">
+                            <i class="fas fa-calendar"></i> 
+                            {{ evento.fecha|date:"d/m/Y" }} {{ evento.hora_inicio|time:"H:i" }}
+                        </span>
+                        <span class="text-sm text-gray-500">
+                            <i class="fas fa-map-marker-alt"></i> 
+                            {{ evento.ubicacion }}
+                        </span>
+                        {% if evento.cupo_maximo > 0 %}
+                        <span class="text-sm text-green-600">
+                            <i class="fas fa-users"></i> 
+                            {{ evento.plazas_disponibles }} plazas disponibles
+                        </span>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="flex-shrink-0">
+                    <a href="{% url 'detalles_evento' evento.id %}" 
+                    class="inline-block px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+                        Ver más
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p class="text-center text-gray-500">No hay eventos próximos disponibles</p>
+        {% endfor %}
+    </div>
+</section>
+
+    <!-- Chat Bot Section -->
+    <div class="chat">
+        <h1 class="chat__title">chat-bot</h1>
+        <div id="chatContainer" class="chat__container"></div>
+        <form id="chatForm" class="chat__form">
+            <input type="text" id="chatInput" class="chat__input" placeholder="Escribe tu mensaje aquí...">
+            <button type="submit" class="chat__button">Enviar</button>
+        </form>
+    </div>
+
+    <!-- Scripts necesarios -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{% static 'js/estudiantes/chat_bot.js' %}"></script>
+    <script src="{% static 'js/estudiantes/pantalla_principal.js' %}"></script>
+</body>
+</html>

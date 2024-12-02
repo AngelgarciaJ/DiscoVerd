@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Detalles del Evento</h1>
+    <h2>{{ evento.titulo }}</h2>
+    <p>Descripción: {{ evento.descripcion }}</p>
+    <p>Fecha: {{ evento.fecha }}</p>
+    <p>Hora de inicio: {{ evento.hora_inicio }}</p>
+    <p>Hora de fin: {{ evento.hora_fin }}</p>
+    <p>Ubicación: {{ evento.ubicacion }}</p>
+    
+    <h3>Estadísticas</h3>
+    <p>Total de participantes: {{ evento.total_participantes }}</p>
+    <!-- Agrega más estadísticas según tus necesidades -->
+
+    <h3>Acciones</h3>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" name="editar">Editar</button>
+        <button type="submit" name="eliminar" onclick="return confirm('¿Estás seguro de eliminar este evento?')">Eliminar</button>
+    </form>
+
+    {% if form %}
+        <h3>Editar Evento</h3>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" name="editar">Guardar Cambios</button>
+        </form>
+    {% endif %}
+{% endblock %}

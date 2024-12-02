@@ -5,6 +5,8 @@ venv/
 
 # archivo de configuracion de comandos
 .txt
+*.log
+
 
 # Archivos de Python compilados
 *.pyc

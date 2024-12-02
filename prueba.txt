@@ -1,12 +1,3 @@
-asd
-Hola, actualizar repositorio con sus partes.. :d
+moviendo
 
 
-
-
-
-## git local
-git remote add upstream <URL-del-repositorio-original>
-git fetch upstream
-
-git checkout main

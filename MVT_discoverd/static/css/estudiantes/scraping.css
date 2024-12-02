@@ -1,0 +1,93 @@
+.evento-card {
+    transition: all 0.3s ease;
+}
+.evento-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+.universidad-tag {
+    background: linear-gradient(45deg, #2563eb, #3b82f6);
+}
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 2rem 0;
+    padding: 1rem;
+}
+.pagination-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.5rem;
+    height: 2.5rem;
+    padding: 0 1rem;
+    border-radius: 9999px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    color: #4B5563;
+    background-color: white;
+    border: 2px solid #E5E7EB;
+}
+.pagination-button:hover {
+    background-color: #F3F4F6;
+    border-color: #D1D5DB;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+.pagination-button.active {
+    background-color: #3B82F6;
+    border-color: #3B82F6;
+    color: white;
+}
+.pagination-button.active:hover {
+    background-color: #2563EB;
+    border-color: #2563EB;
+}
+.pagination-nav-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 9999px;
+    background-color: #F3F4F6;
+    color: #4B5563;
+    transition: all 0.2s ease;
+}
+.pagination-nav-button:hover {
+    background-color: #E5E7EB;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+.pagination-nav-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+.page-container {
+    display: none;
+}
+.page-container.active {
+    display: grid;
+}
+.search-input {
+    transition: all 0.3s ease;
+}
+.search-input:focus {
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+}
+@media (max-width: 640px) {
+    .pagination-button {
+        min-width: 2rem;
+        height: 2rem;
+        padding: 0 0.5rem;
+        font-size: 0.875rem;
+    }
+    .pagination-nav-button {
+        width: 2rem;
+        height: 2rem;
+    }
+}

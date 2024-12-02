@@ -7,9 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Estudiantes - DiscoVerd</title>
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="{% static 'css/estudiantes/login.css' %}" rel="stylesheet"> <!-- Estilos personalizados -->
+    <link href="{% static 'css/estudiantes/Login.css' %}" rel="stylesheet"> <!-- Estilos personalizados -->
     
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Lato:wght@300&display=swap" rel="stylesheet">
@@ -17,11 +15,11 @@
 <body>
 
  <!-- Encabezado y menú -->
-    <header class="custom-header bg-white py-3 border-bottom">
-        <div class="container d-flex justify-content-between align-items-center">
+    <header class="header">
+        <div class="header-container">
             <!-- Logo alineado a la izquierda -->
             <a href="{% url 'login_estudiantes' %}" class="header-logo me-auto">
-                <img src="{% static 'img/estudiantes/imagen2.jpg' %}" class="logo" alt="Logo DiscoVerd">
+                <img src="{% static 'img/logos/FINESI.png' %}" class="logo" alt="Logo DiscoVerd">
             </a>
             <!-- Navegación a la derecha -->
             <nav class="ms-auto">
@@ -43,10 +41,7 @@
                     <!-- Imagen de la izquierda -->
                     <div class="col-lg-6 d-none d-lg-flex align-items-center">
                         <div class="position-relative w-100 h-100">
-                            <img src="{% static 'img/estudiantes/imagen1.png' %}" class="img-fluid w-100 h-100" alt="Imagen de estudiantes" style="object-fit: cover;">
-                            <div class="position-absolute bottom-0 start-50 translate-middle-x text-center mb-4">
-                                <a href="{% url 'registro_estudiantes' %}" class="btn btn-primary">Registrarse</a>
-                            </div>
+                            <img src="{% static 'img/estudiantes/ai-generated-8854868_960_720.png' %}" class="img-fluid w-100 h-100" alt="Imagen de estudiantes" style="object-fit: cover;">
                         </div>
                     </div>
 
@@ -56,7 +51,7 @@
                         {% if error %}
                             <p class="text-danger text-center">{{ error }}</p>
                         {% endif %}
-                        <form action="{% url 'login_estudiantes' %}" method="POST">
+                        <form method="POST" action="{% url 'login_estudiantes' %}" >
                             {% csrf_token %}
                             <div class="form-group mb-3">
                                 <label for="email" class="form-label">Correo electrónico</label>
@@ -66,7 +61,12 @@
                                 <label for="password" class="form-label">Contraseña</label>
                                 <input type="password" class="form-control" id="password" name="password" placeholder="********" required>
                             </div>
-                            <button type="submit" class="btn btn-primary w-100">Iniciar Sesión</button>
+                            <div class="botones-inferiores">
+                                <button type="submit" class="btn btn-primary w-100">Iniciar Sesión</button>
+                            </div>
+                            <div class="botones-inferiores">
+                                <a href="{% url 'login_organizador' %}" class="btn btn-primary w-100 enlace">Ingresar como Administrador</a>
+                            </div>
                         </form>
                     </div>
                 </div>

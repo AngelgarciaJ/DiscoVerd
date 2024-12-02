@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="events-container">
+    <h2>Mis Eventos</h2>
+    <div class="events-grid">
+        {% for evento in eventos %}
+        <div class="event-card">
+            <div class="event-image">
+                {% if evento.imagen %}
+                    <img src="{{ evento.imagen.url }}" alt="{{ evento.nombre }}">
+                {% endif %}
+            </div>
+            <div class="event-info">
+                <h3>{{ evento.nombre }}</h3>
+                <p>{{ evento.descripcion }}</p>
+                <div class="event-details">
+                    <span><i class="fas fa-calendar"></i> {{ evento.fecha }}</span>
+                    <span><i class="fas fa-map-marker-alt"></i> {{ evento.ubicacion }}</span>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p>No estás inscrito en ningún evento todavía.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

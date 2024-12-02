@@ -1,0 +1,209 @@
+.evento-detalle-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.evento-header {
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+.evento-imagen {
+    height: 400px;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.evento-imagen img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.evento-info-principal {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 2rem;
+    border-radius: 8px;
+    margin-top: -100px;
+    margin-left: 2rem;
+    position: relative;
+    max-width: 600px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.evento-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.categoria-badge {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.organizador-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.organizador-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.evento-contenido {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+}
+
+.detalles-principales {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+}
+
+.detalle-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.detalle-item i {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+}
+
+.descripcion-evento {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.accion-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 2rem;
+}
+
+.btn-inscribirse,
+.btn-agotado,
+.btn-inscrito,
+.btn-cancelar {
+    width: 100%;
+    padding: 1rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    margin: 1rem 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-inscribirse {
+    background: var(--primary-color);
+    color: white;
+}
+
+.btn-agotado,
+.btn-inscrito {
+    background: #f5f5f5;
+    color: #666;
+    cursor: not-allowed;
+}
+
+.btn-cancelar {
+    background: #ff4757;
+    color: white;
+}
+
+.compartir-evento {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.redes-sociales {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.share-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+}
+
+.share-btn:hover {
+    transform: scale(1.1);
+}
+
+/* Colores para las categorías */
+.academico { background: #4834d4; color: white; }
+.cultural { background: #6ab04c; color: white; }
+.deportivo { background: #eb4d4b; color: white; }
+.tecnologia { background: #130f40; color: white; }
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.modal-content {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    max-width: 500px;
+    margin: 10% auto;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .evento-contenido {
+        grid-template-columns: 1fr;
+    }
+
+    .evento-info-principal {
+        margin: -50px 1rem 0;
+        padding: 1rem;
+    }
+
+    .evento-imagen {
+        height: 300px;
+    }
+}

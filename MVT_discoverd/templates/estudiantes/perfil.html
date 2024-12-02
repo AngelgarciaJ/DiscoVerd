@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link href="{% static 'css/estudiantes/perfil.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <div class="card profile-card">
+                <div class="card-header profile-header">
+                    <h2>Mi Perfil</h2>
+                </div>
+                <div class="card-body">
+                    {% if perfil %}
+                        <div class="profile-section">
+                            <h4>Información Personal</h4>
+                            <div class="profile-info-item">
+                                <p><strong>Ubicación:</strong> {{ perfil.ubicacion }}</p>
+                                <p><strong>Nivel de Estudio:</strong> {{ perfil.nivel_estudio }}</p>
+                            </div>
+                        </div>
+                        
+                        <div class="profile-section">
+                            <h4>Intereses</h4>
+                            <div class="interests-grid">
+                                {% for interes in perfil.intereses %}
+                                    <span class="badge badge-interest">{{ interes }}</span>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        
+                        <div class="profile-section">
+                            <h4>Disponibilidad</h4>
+                            <div class="availability-grid">
+                                {% for horario in perfil.disponibilidad %}
+                                    <span class="badge badge-availability">{{ horario }}</span>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        
+                        <div class="profile-section">
+                            <h4>Modo de Participación</h4>
+                            <p class="profile-info-item">{{ perfil.modo_participacion }}</p>
+                        </div>
+                        
+                        <div class="profile-section">
+                            <h4>Objetivos</h4>
+                            <div class="objectives-card">
+                                <p>{{ perfil.objetivos }}</p>
+                            </div>
+                        </div>
+                        
+                        <a href="{% url 'perfilamiento_estudiantes' %}" class="btn btn-primary edit-button">Editar Perfil</a>
+                    {% else %}
+                        <p>No has completado tu perfil aún.</p>
+                        <a href="{% url 'perfilamiento_estudiantes' %}" class="btn btn-primary edit-button">Completar Perfil</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% block scripts %}
+<script src="{% static 'js/estudiantes/perfil.js' %}"></script>
+{% endblock %}
+{% endblock %}

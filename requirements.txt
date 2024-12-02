@@ -3,3 +3,9 @@ Django==5.1.1
 sqlparse==0.5.1
 typing_extensions==4.12.2
 tzdata==2024.2
+requests==2.31.0
+beautifulsoup4==4.12.2
+lxml==4.9.3 
+requests
+bs4 
+Pillow

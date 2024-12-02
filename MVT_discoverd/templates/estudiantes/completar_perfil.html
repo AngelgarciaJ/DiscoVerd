@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Completar Perfil</title>
+    <link rel="stylesheet" href="{% static 'css/estudiantes/completar_perfil.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="profile-container">
+        <div class="profile-content">
+            <div class="profile-image-section">
+                <div class="profile-image-container">
+                    <img id="header-preview" src="{% static 'img/default-header.jpg' %}" alt="Foto de perfil" class="profile-image">
+                    <button type="button" class="camera-btn" onclick="document.getElementById('header-upload').click()">
+                        <i class="fas fa-camera"></i>
+                    </button>
+                </div>
+                <input type="file" id="header-upload" accept="image/*" onchange="previewImage(event)" style="display: none;">
+            </div>
+
+            <form method="post" action="{% url 'completar_perfil' %}" class="profile-form">
+                {% csrf_token %}
+                
+                <div class="form-fields">
+                    <input type="text" id="nombre_completo" name="nombre_completo" placeholder="Nombre Completo" required>
+                    <input type="text" id="carrera" name="carrera" placeholder="Tu Especialidad" required>
+                    <textarea id="descripcion" name="descripcion" placeholder="Describe tu experiencia y habilidades" required></textarea>
+                </div>
+
+                <div class="button-group">
+                    <button type="submit" class="save-btn">Guardar Perfil</button>
+                    <button type="button" class="edit-btn">Editar Info</button>
+                </div>
+
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="{% static 'js/estudiantes/completar_perfil.js' %}"></script>
+</body>
+</html>

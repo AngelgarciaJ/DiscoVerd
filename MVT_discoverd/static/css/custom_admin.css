@@ -1,0 +1,12 @@
+body {
+    background-color: #1E90FF; /* Azul eléctrico */
+    color: #ffffff;
+}
+
+.module h2 {
+    color: #ffffff;
+}
+
+.dashboard #header {
+    background-color: #104E8B;
+}
