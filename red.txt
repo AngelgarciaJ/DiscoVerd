@@ -1,0 +1,78 @@
+# Proyecto de Gestión de Eventos
+
+## Descripción
+Este proyecto es una plataforma de gestión de eventos que permite a los usuarios registrarse, crear, editar, visualizar y eliminar eventos. Los organizadores pueden gestionar sus eventos y los estudiantes pueden inscribirse en ellos. Además, el sistema incluye un módulo de scraping para obtener datos de eventos desde fuentes externas.
+
+## Funcionalidades
+- Registro e inicio de sesión para usuarios y organizadores.
+- Gestión de perfiles de usuario y organizador.
+- Creación, edición, visualización y eliminación de eventos.
+- Inscripción y cancelación de inscripción en eventos.
+- Listado de eventos y participantes.
+- Scraping de eventos desde fuentes externas.
+- Panel de administración para organizadores.
+- Servir archivos multimedia en modo de desarrollo.
+
+## Tecnologías Usadas
+- Python
+- Django
+- SQLite
+- BeautifulSoup (para scraping)
+- Requests (para realizar solicitudes HTTP)
+- HTML/CSS (para la interfaz de usuario)
+
+## Cómo Correr el Proyecto
+
+### Clonar el Repositorio
+```bash
+git clone https://github.com/tu-usuario/tu-repositorio.git
+cd tu-repositorio
+```
+
+## Crear y Activar un Entorno Virtual
+```bash
+python -m venv venv
+source venv/bin/activate  # En Windows: venv\Scripts\activate
+```
+
+
+Instalar los Requerimientos
+
+pip install -r [requirements.txt](http://_vscodecontentref_/1)
+
+Configurar las Variables de Entorno
+Crea un archivo .env en el directorio raíz del proyecto y agrega las siguientes variables:
+
+SECRET_KEY=tu_clave_secreta
+DEBUG=True
+ALLOWED_HOSTS=localhost, 127.0.0.1
+DATABASE_URL=sqlite:///db.sqlite3
+
+Migrar la Base de Datos
+python [manage.py](http://_vscodecontentref_/2) migrate
+
+Correr el Servidor de Desarrollo
+python [manage.py](http://_vscodecontentref_/3) runserver
+
+
+
+Acceder a la Aplicación
+Abre tu navegador y ve a http://localhost:8000.
+
+Equipo de Desarrollo
+Nombre del Desarrollador 1
+Nombre del Desarrollador 2
+Nombre del Desarrollador 3
+
+
+Contribuciones
+Las contribuciones son bienvenidas. Por favor, sigue los siguientes pasos para contribuir:
+
+Haz un fork del repositorio.
+Crea una nueva rama (git checkout -b feature/nueva-funcionalidad).
+Realiza tus cambios y haz commit (git commit -am 'Agrega nueva funcionalidad').
+Sube tus cambios a tu fork (git push origin feature/nueva-funcionalidad).
+Abre un Pull Request en el repositorio original.
+
+Licencia
+Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo LICENSE para más detalles.
