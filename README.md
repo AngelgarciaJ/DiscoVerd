@@ -33,7 +33,7 @@ Un sistema para gestionar y participar en eventos de manera eficiente, diseñado
 ## Cómo Correr el Proyecto
 1. Clona el repositorio:
    ```bash
-   git clone https://github.com/tu-usuario/tu-repositorio.git
+   git clone https://github.com/AngelgarciaJ/DiscoVerd.git
    cd tu-repositorio
    ```
 2. Crea y activa un entorno virtual:
