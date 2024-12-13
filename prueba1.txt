@@ -1,0 +1,13 @@
+aqui 
+
+hacer una rama con prueba1, 
+
+
+luego hacer commit, 
+
+
+borrar commit
+-> 
+
+hacer rama extra
+- versionar  con tag ,
