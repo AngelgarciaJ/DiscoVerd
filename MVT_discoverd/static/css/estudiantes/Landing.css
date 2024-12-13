@@ -1,10 +1,18 @@
 /* Reseteo y variables globales */
 :root {
+<<<<<<< HEAD
     --primary-color: #2563eb;
     --secondary-color: #1e40af;
     --accent-color: #3b82f6;
     --text-color: #1f2937;
     --light-gray: #f3f4f6;
+=======
+    --primary-color: #626D71;
+    --secondary-color: #48CFCB;
+    --accent-color: #3b82f6;
+    --text-color: #1f2937;
+    --light-gray:#f3f4f6; 
+>>>>>>> e2ce253692cd28d473d9b519ce02e488d98542bf
     --white: #ffffff;
     --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
@@ -23,7 +31,11 @@ body {
 
 /* Header y Navegación */
 .header {
+<<<<<<< HEAD
     background-color: var(--white);
+=======
+    background-color: #626D71;
+>>>>>>> e2ce253692cd28d473d9b519ce02e488d98542bf
     box-shadow: var(--shadow);
     position: fixed;
     width: 100%;
@@ -184,7 +196,11 @@ h1 {
 
 .list-inline-item {
     display: inline-block;
+<<<<<<< HEAD
     margin: 0 1rem;
+=======
+    margin: 1rem;
+>>>>>>> e2ce253692cd28d473d9b519ce02e488d98542bf
 }
 
 .list-inline-item a {

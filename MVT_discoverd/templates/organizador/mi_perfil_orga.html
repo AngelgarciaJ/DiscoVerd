@@ -1,0 +1,156 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DiscoVerd - Mi Perfil</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50">
+    <!-- Navbar -->
+    <nav class="bg-blue-900 shadow-lg fixed w-full z-10">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0">
+                    <a href="{% url 'pantalla_principal' %}" class="flex items-center hover:opacity-80 transition-opacity">
+                        <img src="{% static 'img/logos/FINESI.png' %}" alt="Logo DiscoVerd" class="h-8 w-8 mr-2">
+                        <span class="text-2xl font-bold text-white">DiscoVerd</span>
+                    </a>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-center space-x-4">
+                        <a href="{% url 'pagina_principal_organizador' %}" class="text-white hover:text-gray-200 px-3 py-2">Dashboard</a>
+                    </div>
+                </div>
+                <div class="flex items-center">
+                    <div class="relative">
+                        <button id="userMenuButton" class="flex items-center space-x-3 text-white focus:outline-none">
+                            {% if es_organizador %}
+                                <img src="{% if perfil.foto %}{{ perfil.foto.url }}{% else %}{% static 'img/default-header.jpg' %}{% endif %}" 
+                                     alt="Profile" class="h-8 w-8 rounded-full object-cover">
+                            {% else %}
+                                <span class="h-8 w-8 rounded-full bg-blue-700 flex items-center justify-center text-white">
+                                    {{ nombre_completo|first }}
+                                </span>
+                            {% endif %}
+                            <span>{{ nombre_completo }}</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="pt-16 pb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="bg-white rounded-lg shadow">
+                <div class="md:grid md:grid-cols-3 md:gap-6">
+                    <!-- Profile Image Section -->
+                    <div class="md:col-span-1 px-4 py-5 sm:px-6">
+                        <div class="flex flex-col items-center">
+                            {% if es_organizador %}
+                                <img src="{% if perfil.foto %}{{ perfil.foto.url }}{% else %}{% static 'img/default-header.jpg' %}{% endif %}" 
+                                     alt="Profile Picture" class="h-48 w-48 rounded-full object-cover border-4 border-blue-900">
+                            {% else %}
+                                <div class="h-48 w-48 rounded-full bg-blue-700 flex items-center justify-center text-white text-6xl border-4 border-blue-900">
+                                    {{ nombre_completo|first }}
+                                </div>
+                            {% endif %}
+                            <h2 class="mt-4 text-xl font-bold text-gray-900">{{ nombre_completo }}</h2>
+                            {% if es_organizador %}
+                                <p class="text-sm text-gray-500">{{ perfil.cargo }}</p>
+                                <p class="text-sm text-gray-500">{{ perfil.facultad }}</p>
+                            {% else %}
+                                <p class="text-sm text-gray-500">Estudiante</p>
+                                <p class="text-sm text-gray-500">{{ perfil.nivel_estudio }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <!-- Profile Details Section -->
+                    <div class="md:col-span-2 px-4 py-5 sm:px-6">
+                        {% if es_organizador %}
+                            <!-- Organizador Information -->
+                            <div class="mb-8">
+                                <h3 class="text-lg font-medium text-gray-900 mb-4">Información Personal</h3>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-500">Email</p>
+                                        <p class="mt-1">{{ request.user.email }}</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-500">Teléfono</p>
+                                        <p class="mt-1">{{ perfil.telefono }}</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-500">Facultad</p>
+                                        <p class="mt-1">{{ perfil.facultad }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        {% else %}
+                            <!-- Student Information -->
+                            <div class="mb-8">
+                                <h3 class="text-lg font-medium text-gray-900 mb-4">Información del Estudiante</h3>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-500">Email</p>
+                                        <p class="mt-1">{{ request.user.email }}</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-500">Intereses</p>
+                                        <p class="mt-1">{{ perfil.intereses|join:", " }}</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-500">Modo de Participación</p>
+                                        <p class="mt-1">{{ perfil.modo_participacion }}</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-500">Ubicación</p>
+                                        <p class="mt-1">{{ perfil.ubicacion }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+
+                        <!-- Edit Button -->
+                        <div class="mt-8 flex justify-end">
+                            {% if es_organizador %}
+                                <a href="{% url 'completar_perfil_organizador' %}" 
+                                   class="px-4 py-2 bg-blue-900 text-white rounded-md hover:bg-blue-800 transition-colors">
+                                    Editar Perfil
+                                </a>
+                            {% else %}
+                                <a href="{% url 'completar_perfil' %}" 
+                                   class="px-4 py-2 bg-blue-900 text-white rounded-md hover:bg-blue-800 transition-colors">
+                                    Editar Perfil
+                                </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Toggle user menu dropdown
+        const userMenuButton = document.getElementById('userMenuButton');
+        const userMenu = document.getElementById('userMenu');
+
+        if (userMenuButton && userMenu) {
+            userMenuButton.addEventListener('click', () => {
+                userMenu.classList.toggle('hidden');
+            });
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', (event) => {
+                if (!userMenuButton.contains(event.target) && !userMenu.contains(event.target)) {
+                    userMenu.classList.add('hidden');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ evento.titulo }} - DiscoVerd</title>
+<<<<<<< HEAD
     <link href="https://cdn.tailwindcss.com" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -99,6 +100,106 @@
                             </button>
                         {% else %}
                             <button disabled class="bg-gray-400 text-white px-6 py-2 rounded cursor-not-allowed">
+=======
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/estudiantes/detalles_eventos.css' %}">
+</head>
+<body>
+    <!-- Header Mejorado -->
+    <header class="header">
+        <nav class="nav-container">
+            <div class="nav-left">
+                <a href="{% url 'pantalla_principal' %}" class="nav-logo">
+                    <img src="{% static 'img/logos/FINESI.png' %}" alt="DiscoVerd">
+                    <span>DiscoVerd</span>
+                </a>
+            </div>
+            <div class="nav-right">
+                <a href="{% url 'perfil' %}" class="nav-link">
+                    <i class="fas fa-user"></i>
+                    <span>Perfil</span>
+                </a>
+                <a href="{% url 'mis_eventos' %}" class="nav-link">
+                    <i class="fas fa-calendar"></i>
+                    <span>Mis Eventos</span>
+                </a>
+                <a href="{% url 'landing_estudiantes' %}" class="nav-link nav-link-logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Salir</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Contenido Principal -->
+    <main class="main-content">
+        <div class="evento-container">
+            <div class="evento-grid">
+                <!-- Columna de Imagen -->
+                <div class="evento-imagen-container">
+                    {% if evento.imagen %}
+                        <img src="{{ evento.imagen.url }}" alt="{{ evento.titulo }}" class="evento-imagen">
+                    {% else %}
+                        <div class="evento-imagen-placeholder">
+                            <i class="fas fa-image"></i>
+                            <span>Sin imagen disponible</span>
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Columna de Detalles -->
+                <div class="evento-detalles">
+                    <h1 class="evento-titulo">{{ evento.titulo }}</h1>
+                    
+                    <div class="organizador-info">
+                        <img src="{% static 'img/logos/FINESI.png' %}" alt="Organizador" class="organizador-avatar">
+                        <div>
+                            <span class="organizador-nombre">{{ evento.organizador }}</span>
+                            <span class="organizador-rol">Organizador</span>
+                        </div>
+                    </div>
+
+                    <div class="evento-info-grid">
+                        <div class="info-item">
+                            <i class="fas fa-calendar"></i>
+                            <span>{{ evento.fecha|date:"d/m/Y" }}</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-clock"></i>
+                            <span>{{ evento.hora_inicio|time:"H:i" }} - {{ evento.hora_fin|time:"H:i" }}</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>{{ evento.ubicacion }}</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-users"></i>
+                            <span>{{ evento.plazas_disponibles }} plazas disponibles</span>
+                        </div>
+                    </div>
+
+                    <div class="evento-descripcion">
+                        <h2>Descripción</h2>
+                        <p>{{ evento.descripcion }}</p>
+                    </div>
+
+                    <div class="evento-acciones">
+                        <div class="contacto">
+                            <i class="fas fa-phone"></i>
+                            <span>Contacto: {{ evento.contacto }}</span>
+                        </div>
+                        
+                        {% if not esta_inscrito and evento.plazas_disponibles > 0 %}
+                            <button onclick="inscribirseEvento({{ evento.id }})" class="btn-accion btn-inscribirse">
+                                Inscribirse
+                            </button>
+                        {% elif esta_inscrito %}
+                            <button onclick="cancelarInscripcion({{ evento.id }})" class="btn-accion btn-cancelar">
+                                Cancelar Inscripción
+                            </button>
+                        {% else %}
+                            <button disabled class="btn-accion btn-disabled">
+>>>>>>> e2ce253692cd28d473d9b519ce02e488d98542bf
                                 No hay plazas disponibles
                             </button>
                         {% endif %}
@@ -107,7 +208,10 @@
             </div>
         </div>
     </main>
+<<<<<<< HEAD
 
+=======
+>>>>>>> e2ce253692cd28d473d9b519ce02e488d98542bf
     <script>
         function inscribirseEvento(eventoId) {
             if (confirm('¿Deseas inscribirte en este evento?')) {

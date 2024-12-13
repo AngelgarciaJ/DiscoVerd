@@ -35,6 +35,12 @@ urlpatterns = [
     path('organizador/completar-perfil/', views.completar_perfil_organizador, name='completar_perfil_organizador'),
     path('organizador/landing/', views.landing_organizador, name='landing_organizador'),
     path('organizador/panel/', views.pagina_principal_organizador, name='pagina_principal_organizador'),
+<<<<<<< HEAD
+=======
+    path('mi-perfil/', views.mi_perfil_organizador, name='mi_perfil_organizador'),
+    path('about-events/', views.about_events, name='about_events'),
+    path('events/', views.events, name='events'),
+>>>>>>> e2ce253692cd28d473d9b519ce02e488d98542bf
     
     
     path('organizador/evento/crear/', views.crear_evento, name='crear_evento'),
@@ -42,6 +48,11 @@ urlpatterns = [
     path('organizador/evento/<int:evento_id>/actualizar/', views.actualizar_evento, name='actualizar_evento'),
     path('eventos/<int:evento_id>/participantes/', views.detalles_evento, name='ver_participantes'),### AGREGE ESTO 
     path('eventos/<int:evento_id>/', views.detalles_evento, name='detalles_evento'),
+<<<<<<< HEAD
+=======
+    
+    path('api/eventos/<int:evento_id>/', views.evento_detail, name='evento_detail'),
+>>>>>>> e2ce253692cd28d473d9b519ce02e488d98542bf
 ]
 
 # Para servir archivos multimedia en modo de desarrollo

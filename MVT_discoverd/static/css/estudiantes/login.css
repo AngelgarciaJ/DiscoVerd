@@ -1,7 +1,12 @@
 /* Reseteo y variables globales */
 :root {
+<<<<<<< HEAD
     --primary-color: #2563eb;
     --secondary-color: #1e40af;
+=======
+    --primary-color: #626D71;
+    --secondary-color: #48CFCB;
+>>>>>>> e2ce253692cd28d473d9b519ce02e488d98542bf
     --accent-color: #3b82f6;
     --text-color: #1f2937;
     --light-gray: #f3f4f6;
@@ -19,13 +24,21 @@ body {
     font-family: 'Poppins', sans-serif;
     line-height: 1.6;
     color: var(--text-color);
+<<<<<<< HEAD
     background: linear-gradient(135deg, var(--white) 0%, var(--light-gray) 100%);
+=======
+    background: linear-gradient(135deg, var(--green) 0%, var(--light-gray) 100%);
+>>>>>>> e2ce253692cd28d473d9b519ce02e488d98542bf
     min-height: 100vh;
 }
 
 /* Header y Navegación */
 .header {
+<<<<<<< HEAD
     background-color: var(--white);
+=======
+    background-color: #626D71;
+>>>>>>> e2ce253692cd28d473d9b519ce02e488d98542bf
     box-shadow: var(--shadow);
     position: fixed;
     width: 100%;

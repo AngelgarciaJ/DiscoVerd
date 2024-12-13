@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% extends 'base.html' %}
 {% load static %}
 
@@ -27,3 +28,104 @@
     </div>
 </div>
 {% endblock %}
+=======
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DiscoVerd - Mis Eventos</title>
+    <link href="{% static 'css/estudiantes/mis_eventos.css' %}" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    {% block content %} 
+    <main class="eventos-contenedor">
+        <!-- Encabezado y Filtros -->
+        <div class="encabezado-eventos">
+            <h2 class="titulo-seccion">Mis Eventos</h2>
+            <div class="filtros">
+                <div class="grupo-filtro">
+                    <select id="categoria-filter" class="filtro-select">
+                        <option value="">Todas las categorías</option>
+                        <option value="academico">Académico</option>
+                        <option value="cultural">Cultural</option>
+                        <option value="deportivo">Deportivo</option>
+                    </select>
+                </div>
+                <div class="grupo-filtro">
+                    <input type="date" id="fecha-filter" class="filtro-fecha">
+                </div>
+                    <button class="boton-salir" onclick="window.location.href='{% url 'pantalla_principal' %}'">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Salir
+                    </button>
+            </div>
+        </div>
+
+        <!-- Lista de Eventos -->
+        <div class="lista-eventos">
+            {% for evento in eventos %}
+            <article class="tarjeta-evento" data-categoria="{{ evento.categoria }}">
+                <div class="imagen-evento">
+                    {% if evento.imagen %}
+                        <img src="{{ evento.imagen.url }}" alt="{{ evento.titulo }}" class="evento-img">
+                    {% else %}
+                        <img src="{% static 'img/default-event.jpg' %}" alt="Imagen por defecto" class="evento-img">
+                    {% endif %}
+                </div>
+                <div class="contenido-evento">
+                    <div class="encabezado-tarjeta">
+                        <h3 class="titulo-evento">{{ evento.titulo }}</h3>
+                        <span class="estado-evento {{ evento.estado|lower }}">{{ evento.estado }}</span>
+                    </div>
+                    
+                    <p class="descripcion-evento">{{ evento.descripcion }}</p>
+                    
+                    <div class="detalles-evento">
+                        <div class="detalle-item">
+                            <i class="fas fa-calendar"></i>
+                            <span>{{ evento.fecha|date:"d M, Y" }}</span>
+                        </div>
+                        <div class="detalle-item">
+                            <i class="fas fa-clock"></i>
+                            <span>{{ evento.hora|time:"H:i" }}</span>
+                        </div>
+                        <div class="detalle-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>{{ evento.ubicacion }}</span>
+                        </div>
+                        <div class="detalle-item">
+                            <i class="fas fa-users"></i>
+                            <span>{{ evento.participantes_count }} participantes</span>
+                        </div>
+                    </div>
+                    
+                    <div class="acciones-evento">
+                        <a href="{% url 'detalles_evento' evento.id %}" class="boton-primario">
+                            <i class="fas fa-info-circle"></i>
+                            <span>Ver Detalles</span>
+                        </a>
+                        {% if not evento.inscrito %}
+                        <button onclick="inscribirEvento('{{ evento.id }}')" class="boton-secundario">
+                            <i class="fas fa-user-plus"></i>
+                            <span>Inscribirse</span>
+                        </button>
+                        {% endif %}
+                    </div>
+                </div>
+            </article>
+            {% empty %}
+            <div class="mensaje-vacio">
+                <i class="fas fa-calendar-times"></i>
+                <p>No estás inscrito en ningún evento todavía.</p>
+                <a href="{% url 'events' %}" class="boton-primario">Explorar Eventos</a>
+            </div>
+            {% endfor %}
+        </div>
+    </main>
+    {% endblock %}
+</body>
+</html>
+>>>>>>> e2ce253692cd28d473d9b519ce02e488d98542bf

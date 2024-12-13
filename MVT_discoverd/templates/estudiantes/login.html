@@ -8,7 +8,10 @@
     <title>Login Estudiantes - DiscoVerd</title>
 
     <link href="{% static 'css/estudiantes/Login.css' %}" rel="stylesheet"> <!-- Estilos personalizados -->
+<<<<<<< HEAD
     
+=======
+>>>>>>> e2ce253692cd28d473d9b519ce02e488d98542bf
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Lato:wght@300&display=swap" rel="stylesheet">
 </head>
@@ -26,8 +29,8 @@
                 <ul class="nav">
                     <li class="nav-item"><a class="nav-link" href="{% url 'landing_estudiantes' %}">Inicio</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'registro_estudiantes' %}">Registrarse</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Acerca de</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Eventos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'about_events' %}">Acerca de Discoved</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'events' %}">Eventos</a></li>
                 </ul>
             </nav>
         </div>
@@ -64,9 +67,12 @@
                             <div class="botones-inferiores">
                                 <button type="submit" class="btn btn-primary w-100">Iniciar Sesión</button>
                             </div>
+<<<<<<< HEAD
                             <div class="botones-inferiores">
                                 <a href="{% url 'login_organizador' %}" class="btn btn-primary w-100 enlace">Ingresar como Administrador</a>
                             </div>
+=======
+>>>>>>> e2ce253692cd28d473d9b519ce02e488d98542bf
                         </form>
                     </div>
                 </div>
@@ -77,11 +83,6 @@
     <!-- Pie de página -->
     <footer class="footer bg-dark text-white py-4">
         <div class="container text-center">
-            <ul class="list-inline mb-3">
-                <li class="list-inline-item"><a href="#" class="text-white">Facebook</a></li>
-                <li class="list-inline-item"><a href="#" class="text-white">Twitter</a></li>
-                <li class="list-inline-item"><a href="#" class="text-white">Instagram</a></li>
-            </ul>
             <p class="mb-0">&copy; 2024 DiscoVerd. Todos los derechos reservados.</p>
         </div>
     </footer>

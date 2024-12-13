@@ -9,6 +9,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/3.0.1/js.cookie.min.js"></script>
 </head>
+<<<<<<< HEAD
 <body class="bg-gray-50">
     <nav class="bg-blue-900 shadow-lg fixed w-full z-10">
         <div class="max-w-7xl mx-auto px-4">
@@ -17,23 +18,45 @@
                     <a href="{% url 'landing_estudiantes' %}" class="flex items-center hover:opacity-80 transition-opacity focus:outline-none">
                         <img src="{% static 'img/logos/FINESI.png' %}" alt="Logo DiscoVerd" class="h-8 w-8 mr-2">
                         <span class="text-2xl font-bold text-white">DiscoVerd</span>
+=======
+<body class="bg-gray-100">
+    <nav class="bg-blue-1000 shadow-lg w-full z-10">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0">
+                    <a href="{% url 'landing_estudiantes' %}" class="flex items-center hover:opacity-80 transition-opacity focus:outline-none">
+                        <img src="{% static 'img/logos/FINESI.png' %}" alt="Logo DiscoVerd" class="h-8 w-8 mr-2">
+                        <span class="text-2xl font-bold text-green">DiscoVerd</span>
+>>>>>>> e2ce253692cd28d473d9b519ce02e488d98542bf
                     </a>
                 </div>
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-center space-x-4">
+<<<<<<< HEAD
                         <a href="{% url 'landing_estudiantes' %}" class="text-white hover:text-gray-200 px-3 py-2">Inicio</a>
                         <a href="#" class="text-gray-300 hover:text-white px-3 py-2">Eventos Académicos</a>
                         <a href="#" class="text-gray-300 hover:text-white px-3 py-2">Facultades</a>
+=======
+                        <a href="{% url 'landing_estudiantes' %}" class="text-green hover:text-gray-200 px-3 py-2">Inicio</a>
+                        <a href="#" class="text-gray-300 hover:text-white px-3 py-2"></a>
+                        <a href="#" class="text-gray-300 hover:text-white px-3 py-2"></a>
+>>>>>>> e2ce253692cd28d473d9b519ce02e488d98542bf
                     </div>
                 </div>
             </div>
         </div>
     </nav>
+<<<<<<< HEAD
     <!-- Navbar se mantiene igual -->
     
     <!-- Login Form Section -->
     <div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-gray-50">
         <div class="max-w-md w-full space-y-8">
+=======
+    <!-- Login Form Section -->
+    <div class="min-h-screen flex items-center justify-center py-8  px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-md w-full space-y-8"style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+>>>>>>> e2ce253692cd28d473d9b519ce02e488d98542bf
             <!-- University Logo se mantiene igual -->
             <div class="flex flex-col items-center">
                 <img src="{% static 'img/organizador/Logo_UNAP.png' %}" alt="Logo UNAP" class="h-20 w-20">
@@ -50,6 +73,7 @@
                 <form class="space-y-6" method="POST" action="{% url 'login_organizador' %}" id="loginForm">
                     {% csrf_token %}
                     
+<<<<<<< HEAD
                     {% if messages %}
                     <div class="mb-4" id="alertMessage">
                         {% for message in messages %}
@@ -57,6 +81,16 @@
                                 {{ message }}
                             </div>
                         {% endfor %}
+=======
+                    {% if error_message %}
+                    <div class="mb-4" id="alertMessage">
+                        <div class="p-4 bg-red-100 text-red-700 rounded-md flex items-center" role="alert">
+                            <svg class="h-5 w-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                            </svg>
+                            {{ error_message }}
+                        </div>
+>>>>>>> e2ce253692cd28d473d9b519ce02e488d98542bf
                     </div>
                     {% endif %}
 
@@ -64,12 +98,24 @@
                         <label for="email" class="block text-sm font-medium text-gray-700">Correo Institucional</label>
                         <div class="mt-1">
                             <input id="email" name="email" type="email" required
+<<<<<<< HEAD
                                 class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                                 placeholder="usuario@universidad.edu">
                         </div>
                         <div id="emailError" class="mt-1 text-sm text-red-600 hidden"></div>
                     </div>
 
+=======
+                                value="{{ email|default:'' }}"
+                                class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                                placeholder="usuario@universidad.edu">
+                        </div>
+                        {% if form.email.errors %}
+                        <p class="mt-1 text-sm text-red-600">{{ form.email.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+                    <!-- Para el campo de contraseña -->
+>>>>>>> e2ce253692cd28d473d9b519ce02e488d98542bf
                     <div>
                         <label for="password" class="block text-sm font-medium text-gray-700">Contraseña</label>
                         <div class="mt-1">
@@ -77,7 +123,13 @@
                                 class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                                 placeholder="••••••••">
                         </div>
+<<<<<<< HEAD
                         <div id="passwordError" class="mt-1 text-sm text-red-600 hidden"></div>
+=======
+                        {% if form.password.errors %}
+                        <p class="mt-1 text-sm text-red-600">{{ form.password.errors.0 }}</p>
+                        {% endif %}
+>>>>>>> e2ce253692cd28d473d9b519ce02e488d98542bf
                     </div>
 
                     <div class="flex items-center justify-between">
@@ -177,6 +229,27 @@
             document.getElementById('email').value = savedEmail;
             document.getElementById('remember-me').checked = true;
         }
+<<<<<<< HEAD
+=======
+        // Hacer que los mensajes de error desaparezcan después de 5 segundos
+        document.addEventListener('DOMContentLoaded', function() {
+            // Manejar mensajes de error/éxito
+            const messagesContainer = document.getElementById('messages-container');
+            if (messagesContainer) {
+                setTimeout(function() {
+                    const messages = messagesContainer.querySelectorAll('[role="alert"]');
+                    messages.forEach(function(message) {
+                        message.style.transition = 'all 0.5s ease-in-out';
+                        message.style.opacity = '0';
+                        message.style.transform = 'translateY(-10px)';
+                    });
+                    setTimeout(function() {
+                        messagesContainer.remove();
+                    }, 500);
+                }, 5000);
+            }
+        });
+>>>>>>> e2ce253692cd28d473d9b519ce02e488d98542bf
     </script>
 </body>
 </html>

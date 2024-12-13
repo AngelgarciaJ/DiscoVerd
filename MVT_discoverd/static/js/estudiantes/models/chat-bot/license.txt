@@ -1,0 +1,11 @@
+Model Information:
+* title:	3D Chat Bot Avatar Model
+* source:	https://sketchfab.com/3d-models/3d-chat-bot-avatar-model-25a8ae3794594941bb2f7091d608b336
+* author:	DesigNexon (https://sketchfab.com/DesigNexon)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "3D Chat Bot Avatar Model" (https://sketchfab.com/3d-models/3d-chat-bot-avatar-model-25a8ae3794594941bb2f7091d608b336) by DesigNexon (https://sketchfab.com/DesigNexon) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

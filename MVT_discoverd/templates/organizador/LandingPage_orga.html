@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DiscoVerd - Portal de Eventos Universitarios</title>
+<<<<<<< HEAD
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="bg-gray-50">
@@ -58,10 +59,69 @@
                                     Cerrar Sesión
                                 </button>
                             </form>
+=======
+    <link href="{% static 'css/organizador/landing_orga.css' %}" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/estudiantes/welcome-modal.css' %}">
+</head>
+<body class="bg-gray-50">
+    <!-- Header Container -->
+    <header class="header">
+        <!-- Navigation -->
+        <nav class="nav-main">
+            <div class="nav-container">
+                <div class="nav-content">
+                    <!-- Logo -->
+                    <div class="logo-container">
+                        <a href="{% url 'landing_organizador' %}" class="logo-link">
+                            <img src="{% static 'img/logos/FINESI.png' %}" alt="Logo DiscoVerd" class="logo-image">
+                            <span class="logo-text">DiscoVerd</span>
+                        </a>
+                    </div>
+
+                    <!-- Desktop Navigation Menu -->
+                    <div class="nav-menu">
+                        <div class="nav-links">
+                            <a href="{% url 'pagina_principal_organizador' %}" class="nav-link">Crear evento</a>
+                            <a href="{% url 'pantalla_principal' %}" class="nav-link">Volver a la Página Principal</a>
+                            <a href="#" class="nav-link">Bienvenido</a>
+                        </div>
+                    </div>
+
+                    <!-- User Profile -->
+                    <div class="profile-container">
+                        <div class="profile-wrapper">
+                            <button class="profile-button">
+                                <div class="profile-content">
+                                    {% if organizador.foto %}
+                                        <img src="{{ organizador.foto.url }}" alt="Foto de perfil" class="profile-image">
+                                    {% else %}
+                                        <img src="{% static 'img/default-header.jpg' %}" alt="Foto por defecto" class="profile-image">
+                                    {% endif %}
+                                    <span class="profile-name">{{ nombre_completo }}</span>
+                                </div>
+                            </button>
+
+                            <!-- Dropdown Menu -->
+                            <div class="dropdown-menu">
+                                <a href="{% url 'mi_perfil_organizador' %}" class="dropdown-item">
+                                    <i class="fas fa-user"></i> Mi Perfil
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <form method="post" action="{% url 'logout' %}" class="logout-form">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="next" value="{% url 'landing_estudiantes' %}">
+                                    <button type="submit" class="dropdown-item">
+                                        <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+                                    </button>
+                                </form>
+                            </div>
+>>>>>>> e2ce253692cd28d473d9b519ce02e488d98542bf
                         </div>
                     </div>
                 </div>
             </div>
+<<<<<<< HEAD
         </div>
     </nav>
 
@@ -272,6 +332,67 @@
             this.classList.toggle('hover');
         });
     });
+=======
+        </nav>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1 class="hero-title">Organiza Tus Eventos Con DiscoVerd</h1>
+                        <p class="hero-description">
+                            Plataforma integral para la gestión de eventos. 
+                            Conecta con la comunidad y promueve el conocimiento.
+                        </p>
+                        <div class="hero-buttons">
+                            <a href="{% url 'pagina_principal_organizador' %}" class="button-primary">
+                                Publicar mi evento
+                            </a>
+                            <a href="{% url 'events' %}" class="button-secondary">
+                                Conocer más acerca de eventos
+                            </a>
+                        </div>
+                    </div>
+                    <div class="hero-image">
+                        <img src="{% static 'img/organizador/UNA.jpg' %}" alt="Eventos Universitarios">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </header>
+
+    <!-- Flash Messages -->
+    {% if messages %}
+    <div class="messages-container">
+        {% for message in messages %}
+            <div class="message {% if message.tags == 'error' %}message-error{% else %}message-success{% endif %}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <p class="footer-text">&copy; 2024 DiscoVerd. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="{% static 'js/estudiantes/welcome-modal.js' %}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const profileButton = document.querySelector('.profile-wrapper');
+            profileButton.addEventListener('touchstart', function(e) {
+                e.preventDefault();
+                this.classList.toggle('active');
+            });
+        });
+>>>>>>> e2ce253692cd28d473d9b519ce02e488d98542bf
     </script>
 </body>
 </html>

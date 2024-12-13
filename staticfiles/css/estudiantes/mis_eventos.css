@@ -1,0 +1,320 @@
+/* Variables de color */
+:root {
+    --color-primary: #4299e1;
+    --color-primary-dark: #2b6cb0;
+    --color-background: #f7fafc;
+    --color-text: #2d3748;
+    --color-text-light: #4a5568;
+    --color-border: #e2e8f0;
+    --color-danger: #3ea8e5;
+    --color-danger-dark: #3071c5;
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Reset y estilos base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--color-background);
+    color: var(--color-text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+/* Contenedor principal */
+.eventos-contenedor {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+}
+
+/* Encabezado y título */
+.titulo-seccion {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 0.5rem;
+}
+
+.encabezado-eventos {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+/* Filtros */
+.filtros {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.grupo-filtro select,
+.grupo-filtro input {
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    background-color: white;
+    font-size: 0.95rem;
+    min-width: 200px;
+    transition: all 0.2s ease;
+}
+
+.grupo-filtro select:focus,
+.grupo-filtro input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.2);
+}
+
+/* Botón salir */
+.boton-salir {
+    padding: 0.75rem 1.5rem;
+    background-color: var(--color-danger);
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.boton-salir:hover {
+    background-color: var(--color-danger-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.boton-salir i {
+    font-size: 1.1rem;
+}
+
+/* Lista de eventos */
+.lista-eventos {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Tarjeta de evento */
+.tarjeta-evento {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    background: white;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    transition: all 0.3s ease;
+}
+
+.tarjeta-evento:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Imagen del evento */
+.imagen-evento {
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+}
+
+.evento-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.tarjeta-evento:hover .evento-img {
+    transform: scale(1.05);
+}
+
+/* Contenido del evento */
+.contenido-evento {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.encabezado-tarjeta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.titulo-evento {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+/* Estados del evento */
+.estado-evento {
+    padding: 0.35rem 1rem;
+    border-radius: 2rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+.estado-evento.activo { 
+    background: #c6f6d5; 
+    color: #22543d;
+}
+
+.estado-evento.pendiente { 
+    background: #feebc8; 
+    color: #744210;
+}
+
+.estado-evento.finalizado { 
+    background: #e2e8f0; 
+    color: #2d3748;
+}
+
+/* Descripción */
+.descripcion-evento {
+    color: var(--color-text-light);
+    line-height: 1.6;
+    font-size: 1rem;
+}
+
+/* Detalles del evento */
+.detalles-evento {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+    margin: 1rem 0;
+    padding: 1rem;
+    background: var(--color-background);
+    border-radius: 0.5rem;
+}
+
+.detalle-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--color-text-light);
+}
+
+.detalle-item i {
+    color: var(--color-primary);
+    font-size: 1.1rem;
+}
+
+/* Botones */
+.acciones-evento {
+    display: flex;
+    gap: 1rem;
+    margin-top: auto;
+}
+
+.boton-primario,
+.boton-secundario {
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
+    border: none;
+}
+
+.boton-primario {
+    background: var(--color-primary);
+    color: white;
+}
+
+.boton-primario:hover {
+    background: var(--color-primary-dark);
+    transform: translateY(-2px);
+}
+
+.boton-secundario {
+    background: white;
+    color: var(--color-primary);
+    border: 1px solid var(--color-primary);
+}
+
+.boton-secundario:hover {
+    background: var(--color-primary);
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* Mensaje vacío */
+.mensaje-vacio {
+    text-align: center;
+    padding: 3rem;
+    background: white;
+    border-radius: 1rem;
+    box-shadow: var(--shadow-md);
+}
+
+.mensaje-vacio i {
+    font-size: 3rem;
+    color: #a0aec0;
+    margin-bottom: 1rem;
+}
+
+.mensaje-vacio p {
+    color: var(--color-text-light);
+    margin-bottom: 1.5rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .tarjeta-evento {
+        grid-template-columns: 1fr;
+    }
+
+    .imagen-evento {
+        height: 200px;
+    }
+
+    .encabezado-eventos {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .filtros {
+        width: 100%;
+    }
+
+    .grupo-filtro {
+        flex: 1;
+    }
+
+    .grupo-filtro select,
+    .grupo-filtro input {
+        width: 100%;
+    }
+
+    .acciones-evento {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .detalles-evento {
+        grid-template-columns: 1fr;
+    }
+}

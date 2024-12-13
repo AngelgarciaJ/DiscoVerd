@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% extends 'base.html' %}
 {% load static %}
 
@@ -68,3 +69,152 @@
 <script src="{% static 'js/estudiantes/perfil.js' %}"></script>
 {% endblock %}
 {% endblock %}
+=======
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Perfil - DiscoVerd</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/estudiantes/perfil.css' %}">
+</head>
+<body>
+    <div class="profile-container">
+        {% if perfil %}
+            <div class="profile-header">
+                <div class="cover-photo"></div>
+                <div class="profile-info-header">
+                    <div class="profile-photo-container">
+                        <div class="profile-photo-wrapper">
+                            {% if perfil.foto %}
+                                <img src="{{ perfil.foto.url }}" alt="Foto de perfil" class="profile-photo" onerror="this.src='{% static 'img/default-profile.jpg' %}'">
+                            {% else %}
+                                <img src="{% static 'img/default-profile.jpg' %}" alt="Foto de perfil por defecto" class="profile-photo">
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="profile-title-info">
+                        <h1>{{ user.first_name }} {{ user.last_name }}</h1>
+                        <p class="subtitle">{{ perfil.carrera }} - {{ perfil.ciclo }}° Ciclo</p>
+                        <div class="universidad">
+                            <i class="fas fa-university"></i>
+                            <span>{{ perfil.universidad }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-content">
+                <div class="profile-sidebar">
+                    <div class="info-card">
+                        <h3><i class="fas fa-info-circle"></i> Información Básica</h3>
+                        <ul>
+                            <li><i class="fas fa-map-marker-alt"></i> {{ perfil.departamento }}, {{ perfil.distrito }}</li>
+                            <li><i class="fas fa-phone"></i> {{ perfil.telefono }}</li>
+                            <li><i class="fas fa-calendar"></i> {{ perfil.ciclo }}° Ciclo</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-card">
+                        <h3><i class="fas fa-clock"></i> Disponibilidad</h3>
+                        <div class="availability-tags">
+                            {% if perfil.horarios %}
+                                {% for horario in perfil.horarios %}
+                                    <span class="tag">{{ horario }}</span>
+                                {% endfor %}
+                            {% else %}
+                                <p class="no-data">No se ha especificado disponibilidad</p>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <h3><i class="fas fa-route"></i> Preferencias</h3>
+                        <ul>
+                            <li><i class="fas fa-video"></i> Modalidad: {{ perfil.modalidad|default:"No especificada" }}</li>
+                            <li><i class="fas fa-road"></i> Distancia máxima: {{ perfil.distancia_maxima|default:"0" }} km</li>
+                        </ul>
+                    </div>
+
+                    {% if perfil.linkedin or perfil.github %}
+                        <div class="info-card social-links">
+                            <h3><i class="fas fa-link"></i> Enlaces Profesionales</h3>
+                            {% if perfil.linkedin %}
+                                <a href="{{ perfil.linkedin }}" target="_blank" class="social-link">
+                                    <i class="fab fa-linkedin"></i> LinkedIn
+                                </a>
+                            {% endif %}
+                            {% if perfil.github %}
+                                <a href="{{ perfil.github }}" target="_blank" class="social-link">
+                                    <i class="fab fa-github"></i> GitHub
+                                </a>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <div class="profile-main">
+                    <div class="main-card biografia">
+                        <h3><i class="fas fa-user-graduate"></i> Biografía Académica</h3>
+                        <p>{{ perfil.biografia|default:"No se ha añadido una biografía aún." }}</p>
+                    </div>
+
+                    <div class="main-card">
+                        <h3><i class="fas fa-star"></i> Áreas de Interés</h3>
+                        <div class="interests-grid">
+                            {% if perfil.intereses %}
+                                {% for interes in perfil.intereses %}
+                                    <div class="interest-item">
+                                        <i class="fas fa-check-circle"></i>
+                                        <span>{{ interes }}</span>
+                                    </div>
+                                {% endfor %}
+                            {% else %}
+                                <p class="no-data">No se han especificado áreas de interés</p>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="main-card">
+                        <h3><i class="fas fa-tools"></i> Habilidades</h3>
+                        <div class="skills-container">
+                            {% if perfil.habilidades %}
+                                {% for habilidad in perfil.habilidades %}
+                                    <span class="skill-tag">{{ habilidad }}</span>
+                                {% endfor %}
+                            {% else %}
+                                <p class="no-data">No se han agregado habilidades</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-actions">
+                <a href="{% url 'perfilamiento_estudiantes' %}" class="edit-button">
+                    <i class="fas fa-edit"></i> Editar Perfil
+                </a>
+                <a href="{% url 'pantalla_principal' %}" class="edit-button">
+                    <i class="fas fa-edit"></i> Salir
+                </a>
+            </div>
+            
+        {% else %}
+            <div class="empty-profile">
+                <i class="fas fa-user-circle"></i>
+                <h2>Perfil No Completado</h2>
+                <p>Para aprovechar al máximo la plataforma, completa tu perfil académico.</p>
+                <a href="{% url 'perfilamiento_estudiantes' %}" class="complete-profile-button">
+                    Completar Perfil
+                </a>
+            </div>
+        {% endif %}
+    </div>
+
+    <script src="{% static 'js/estudiantes/perfil.js' %}"></script>
+</body>
+</html>
+>>>>>>> e2ce253692cd28d473d9b519ce02e488d98542bf
