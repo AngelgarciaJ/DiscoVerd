@@ -68,13 +68,15 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+<<<<<<< HEAD
                 'django.template.context_processors.static',  # Para usar static files en templates
+=======
+                'django.template.context_processors.static',
+>>>>>>> e2ce253692cd28d473d9b519ce02e488d98542bf
             ],
         },
     },
 ]
-
-WSGI_APPLICATION = 'myproject.wsgi.application'
 
 
 # Database

@@ -1,20 +1,52 @@
+<<<<<<< HEAD
 
 /* styles_perfilamiento.css */
 .perfilamiento-section {
     background-color: #f8f9fa;
     min-height: 100vh;
+=======
+/* Estilos generales */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f8f9fa;
+}
+
+/* Estilos del encabezado */
+.logo-container {
+    width: 120px;
+    height: auto;
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+/* Sección principal */
+.perfilamiento-section {
+    background-color: #f8f9fa;
+    min-height: calc(100vh - 140px);
+>>>>>>> e2ce253692cd28d473d9b519ce02e488d98542bf
     padding: 40px 0;
 }
 
 .form-container {
     background: white;
     border-radius: 15px;
+<<<<<<< HEAD
     box-shadow: 0 0 20px rgba(0,0,0,0.1);
+=======
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+>>>>>>> e2ce253692cd28d473d9b519ce02e488d98542bf
     padding: 30px;
     max-width: 800px;
     margin: 0 auto;
 }
 
+<<<<<<< HEAD
 .progress-bar {
     height: 8px;
     background-color: #e9ecef;
@@ -131,4 +163,84 @@
 
 .social-links a:hover {
     color: #0d6efd !important;
+=======
+/* Barra de progreso y pasos */
+.progress-container {
+    margin-bottom: 40px;
+}
+
+.progress {
+    height: 4px;
+    margin-bottom: 20px;
+}
+
+.progress-steps {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.step {
+    position: relative;
+    z-index: 2;
+    background: white;
+    width: 100px;
+    text-align: center;
+}
+
+.step-number {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background: #e9ecef;
+    color: #6c757d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 10px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.step.active .step-number {
+    background: #0d6efd;
+    color: white;
+}
+
+.step.completed .step-number {
+    background: #198754;
+    color: white;
+}
+
+.step-text {
+    font-size: 0.875rem;
+    color: #6c757d;
+    display: block;
+}
+
+/* Estilos de los pasos del formulario */
+.form-step {
+    display: none;
+    opacity: 0;
+    transform: translateX(20px);
+    transition: all 0.3s ease;
+}
+
+.form-step.active {
+    display: block;
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.form-section {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 25px;
+    margin-bottom: 30px;
+}
+
+.form-section h3 {
+    color: #2c3e
+>>>>>>> e2ce253692cd28d473d9b519ce02e488d98542bf
 }

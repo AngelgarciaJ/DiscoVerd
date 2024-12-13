@@ -1,0 +1,92 @@
+.eventos-container {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.filtros {
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.filtro-grupo {
+    display: flex;
+    gap: 1rem;
+}
+
+.filtro-grupo select,
+.filtro-grupo input {
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.eventos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.evento-card {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.evento-card:hover {
+    transform: translateY(-5px);
+}
+
+.evento-imagen {
+    height: 200px;
+    overflow: hidden;
+}
+
+.evento-imagen img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.evento-info {
+    padding: 1rem;
+}
+
+.evento-detalles {
+    display: flex;
+    gap: 1rem;
+    margin: 1rem 0;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.btn-inscribir {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.btn-inscribir:hover {
+    background: var(--primary-color-dark);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .filtro-grupo {
+        flex-direction: column;
+    }
+    
+    .eventos-grid {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acerca de & Eventos</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/estudiantes/about_events.css' %}">
+</head>
+<body>
+    <!-- Sección Acerca de -->
+    <section class="about-section">
+        <div class="hero-banner">
+            <img src="{% static 'img/estudiantes/students-250164_1280.jpg' %}" alt="Estudiantes en campus">
+            <div class="hero-content">
+                <h1>Acerca de Nosotros</h1>
+                <p>Conectando estudiantes y organizadores para crear experiencias únicas</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-card">
+                    <img src="{% static 'img/estudiantes/ai-generated-8854868_960_720.png' %}" alt="Quiénes somos">
+                    <h2>Quiénes somos</h2>
+                    <p>Somos una plataforma que conecta estudiantes, organizadores y la comunidad a través de eventos académicos, culturales, deportivos y musicales. Fomentamos el aprendizaje, la inclusión y el respeto.</p>
+                </div>
+
+                <div class="about-card">
+                    <img src="{% static 'img/estudiantes/imagen1.png' %}" alt="Qué hacemos">
+                    <h2>Qué hacemos</h2>
+                    <p>Facilitamos el descubrimiento de eventos para el desarrollo personal y social. Proporcionamos herramientas para que publiques tus propios eventos de forma sencilla y segura.</p>
+                </div>
+            </div>
+
+            <div class="features-section">
+                <h2>¿Por qué elegirnos?</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="icon">🎯</div>
+                        <h3>Eventos Seleccionados</h3>
+                        <p>Eventos cuidadosamente organizados para mantener un ambiente respetuoso y positivo.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">📝</div>
+                        <h3>Publica tus Eventos</h3>
+                        <p>Comparte tus propios eventos siguiendo nuestras normas de comunidad.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">💡</div>
+                        <h3>Diseño Intuitivo</h3>
+                        <p>Interfaz amigable y atractiva para mejorar tu experiencia.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rules-section">
+                <h2>Normas de la plataforma</h2>
+                <div class="rules-container">
+                    <div class="rule-card">
+                        <div class="icon">⛔</div>
+                        <p>No se permite contenido que fomente violencia, racismo, discriminación o actividades inapropiadas.</p>
+                    </div>
+                    <div class="rule-card">
+                        <div class="icon">✅</div>
+                        <p>Solo eventos académicos, culturales, deportivos o musicales, enfocados en el desarrollo personal y colectivo.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Eventos -->
+    <section class="events-section">
+        <div class="hero-banner">
+            <img src="{% static 'img/estudiantes/lecture-3986809_1280.jpg' %}" alt="Eventos educativos">
+            <div class="hero-content">
+                <h1>Nuestros Eventos</h1>
+                <p>Descubre oportunidades únicas para tu desarrollo</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="event-types-grid">
+                <div class="event-type">
+                    <div class="icon">🎓</div>
+                    <h3>Académicos</h3>
+                    <p>Seminarios, charlas, talleres, conferencias.</p>
+                </div>
+                <div class="event-type">
+                    <div class="icon">🎭</div>
+                    <h3>Culturales</h3>
+                    <p>Festivales, exposiciones, presentaciones artísticas.</p>
+                </div>
+                <div class="event-type">
+                    <div class="icon">⚽</div>
+                    <h3>Deportivos</h3>
+                    <p>Torneos, competencias, clases grupales.</p>
+                </div>
+                <div class="event-type">
+                    <div class="icon">🎵</div>
+                    <h3>Musicales</h3>
+                    <p>Conciertos, recitales, espectáculos en vivo.</p>
+                </div>
+            </div>
+
+            <div class="how-to-section">
+                <div class="how-to-card">
+                    <h2>Cómo buscar eventos</h2>
+                    <div class="steps">
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <p>Explora eventos en nuestra página principal</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <p>Usa filtros por categoría, fecha o ubicación</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="how-to-card">
+                    <h2>Cómo publicar un evento</h2>
+                    <div class="steps">
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <p>Regístrate y selecciona "Publicar Evento"</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <p>Completa el formulario con los detalles</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <p>Adjunta una imagen atractiva</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="benefits-section">
+                <h2>Beneficios para usuarios</h2>
+                <div class="benefits-grid">
+                    <div class="benefit-card">
+                        <div class="icon">🔍</div>
+                        <h3>Búsqueda Inteligente</h3>
+                        <p>Acceso a eventos filtrados según tus intereses</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="icon">⚙️</div>
+                        <h3>Gestión Simple</h3>
+                        <p>Administra tus eventos publicados fácilmente</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="icon">👥</div>
+                        <h3>Comunidad Activa</h3>
+                        <p>Forma parte de una comunidad comprometida</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h1 class="mb-4">Únete a una comunidad Ahora :)</h1>
+                <a href="{% url 'registro_estudiantes' %}" class="btn btn-primary btn-lg" style="background: linear-gradient(45deg, #6a11cb, #2575fc); color: #fff; border: none; border-radius: 25px; padding: 15px 30px; font-size: 18px; font-weight: bold; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;">Comienza Ahora</a>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

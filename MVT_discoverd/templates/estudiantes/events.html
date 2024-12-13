@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventos - Plataforma de Eventos</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/estudiantes/events.css' %}">
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Descubre Eventos Increíbles</h1>
+            <p>Únete a una comunidad que valora el aprendizaje y la cultura</p>
+        </div>
+    </section>
+
+    <!-- Tipos de Eventos -->
+    <section class="event-types">
+        <div class="container">
+            <h2>Tipos de Eventos Disponibles</h2>
+            <div class="event-types-grid">
+                <div class="event-type-card">
+                    <div class="icon">🎓</div>
+                    <h3>Académicos</h3>
+                    <ul>
+                        <li>Seminarios</li>
+                        <li>Charlas</li>
+                        <li>Talleres</li>
+                        <li>Conferencias</li>
+                    </ul>
+                </div>
+
+                <div class="event-type-card">
+                    <div class="icon">🎭</div>
+                    <h3>Culturales</h3>
+                    <ul>
+                        <li>Festivales</li>
+                        <li>Exposiciones</li>
+                        <li>Presentaciones artísticas</li>
+                    </ul>
+                </div>
+
+                <div class="event-type-card">
+                    <div class="icon">⚽</div>
+                    <h3>Deportivos</h3>
+                    <ul>
+                        <li>Torneos</li>
+                        <li>Competencias</li>
+                        <li>Clases grupales</li>
+                    </ul>
+                </div>
+
+                <div class="event-type-card">
+                    <div class="icon">🎵</div>
+                    <h3>Musicales</h3>
+                    <ul>
+                        <li>Conciertos</li>
+                        <li>Recitales</li>
+                        <li>Espectáculos en vivo</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cómo Buscar Eventos -->
+    <section class="search-events">
+        <div class="container">
+            <h2>Cómo Buscar Eventos</h2>
+            <div class="search-options">
+                <div class="search-option">
+                    <div class="icon">🔍</div>
+                    <h3>Explora la Página Principal</h3>
+                    <p>Navega por nuestra selección de eventos destacados con imágenes y descripciones detalladas.</p>
+                </div>
+                <div class="search-option">
+                    <div class="icon">📅</div>
+                    <h3>Usa Nuestros Filtros</h3>
+                    <p>Filtra por categorías, fechas o ubicación para encontrar exactamente lo que buscas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cómo Publicar -->
+    <section class="publish-events">
+        <div class="container">
+            <h2>Cómo Publicar un Evento</h2>
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Regístrate</h3>
+                    <p>Crea tu cuenta y selecciona "Publicar Evento"</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Completa el Formulario</h3>
+                    <p>Añade nombre, descripción, fecha, lugar y categoría</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Sube una Imagen</h3>
+                    <p>Adjunta una imagen atractiva para tu evento</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Revisa las Normas</h3>
+                    <p>Asegúrate de cumplir con nuestras normas de publicación</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Eventos Destacados -->
+    <section class="featured-events">
+        <div class="container">
+            <h2>Eventos Destacados</h2>
+            <div class="featured-events-grid">
+                {% for evento in eventos_destacados %}
+                <div class="featured-event-card">
+                    <img src="{{ evento.imagen.url }}" alt="{{ evento.titulo }}">
+                    <div class="event-info">
+                        <h3>{{ evento.titulo }}</h3>
+                        <p>{{ evento.descripcion|truncatewords:20 }}</p>
+                        <a href="{% url 'detalles_evento' evento.id %}" class="btn-more">Ver más</a>
+                    </div>
+                </div>
+                {% empty %}
+                <p class="no-events">Próximamente nuevos eventos destacados</p>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Beneficios -->
+    <section class="benefits">
+        <div class="container">
+            <h2>Beneficios para los Usuarios</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="icon">📋</div>
+                    <h3>Lista Organizada</h3>
+                    <p>Accede a una lista ordenada y filtrable de todos los eventos disponibles.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="icon">⚙️</div>
+                    <h3>Gestión de Eventos</h3>
+                    <p>Herramientas intuitivas para administrar tus eventos publicados.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="icon">👥</div>
+                    <h3>Comunidad Activa</h3>
+                    <p>Forma parte de una comunidad que valora el aprendizaje y la cultura.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

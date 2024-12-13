@@ -1,0 +1,274 @@
+/* Variables y Reset */
+:root {
+    --primary-color: #2564eb81;
+    --secondary-color: #1e40af;
+    --text-color: #0f66df;
+    --light-gray: #f3f4f6;
+    --header-height: 70px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    background-color: var(--light-gray);
+    color: var(--text-color);
+}
+
+/* Header Mejorado */
+.header {
+    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+    height: var(--header-height);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+}
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-decoration: none;
+    color: white;
+}
+
+.nav-logo img {
+    height: 40px;
+    width: auto;
+}
+
+.nav-logo span {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.nav-right {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.3s ease;
+}
+
+.nav-link:hover {
+    background-color: rgba(255,255,255,0.1);
+}
+
+.nav-link-logout:hover {
+    background-color: #dc2626;
+}
+
+/* Contenido Principal */
+.main-content {
+    margin-top: var(--header-height);
+    padding: 2rem;
+}
+
+.evento-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.evento-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+/* Columna de Imagen */
+.evento-imagen-container {
+    height: 100%;
+    min-height: 500px;
+    position: relative;
+}
+
+.evento-imagen {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.evento-imagen-placeholder {
+    width: 100%;
+    height: 100%;
+    background: #f5f5f5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    color: #666;
+}
+
+/* Columna de Detalles */
+.evento-detalles {
+    padding: 2rem;
+}
+
+.evento-titulo {
+    font-size: 2rem;
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+}
+
+.organizador-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--light-gray);
+}
+
+.organizador-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.organizador-nombre {
+    display: block;
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+.organizador-rol {
+    font-size: 0.875rem;
+    color: #666;
+}
+
+.evento-info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.info-item i {
+    color: var(--primary-color);
+}
+
+.evento-descripcion {
+    margin-bottom: 2rem;
+}
+
+.evento-descripcion h2 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+.evento-acciones {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--light-gray);
+}
+
+.btn-accion {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-inscribirse {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-cancelar {
+    background-color: #dc2626;
+    color: white;
+}
+
+.btn-disabled {
+    background-color: #9ca3af;
+    color: white;
+    cursor: not-allowed;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .evento-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .evento-imagen-container {
+        min-height: 300px;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-container {
+        flex-direction: column;
+        padding: 1rem;
+        height: auto;
+    }
+
+    .header {
+        height: auto;
+    }
+
+    .nav-right {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .main-content {
+        margin-top: 120px;
+        padding: 1rem;
+    }
+
+    .evento-detalles {
+        padding: 1rem;
+    }
+
+    .evento-info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .evento-acciones {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
