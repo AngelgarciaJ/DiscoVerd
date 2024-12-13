@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="events-container">
+    <div class="filters">
+        <h3>Filtros</h3>
+        <div class="filter-group">
+            <label>Categoría:</label>
+            <select id="categoria-filter">
+                <option value="">Todas</option>
+                {% for cat in categorias %}
+                <option value="{{ cat.0 }}">{{ cat.1 }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="filter-group">
+            <label>Fecha:</label>
+            <input type="date" id="fecha-filter">
+        </div>
+    </div>
+
+    <div class="events-grid">
+        {% for evento in eventos %}
+        <div class="event-card" 
+             data-categoria="{{ evento.categoria }}"
+             data-fecha="{{ evento.fecha|date:'Y-m-d' }}">
+            <div class="event-image">
+                {% if evento.imagen %}
+                    <img src="{{ evento.imagen.url }}" alt="{{ evento.titulo }}">
+                {% endif %}
+            </div>
+            <div class="event-info">
+                <h3>{{ evento.titulo }}</h3>
+                <p>{{ evento.descripcion|truncatechars:150 }}</p>
+                <div class="event-details">
+                    <span><i class="fas fa-calendar"></i> {{ evento.fecha|date:"d M Y" }}</span>
+                    <span><i class="fas fa-map-marker-alt"></i> {{ evento.ubicacion }}</span>
+                    <span><i class="fas fa-users"></i> {{ evento.plazas_disponibles }} plazas</span>
+                </div>
+                <div class="event-actions">
+                    <button class="btn-inscribirse" data-evento-id="{{ evento.id }}">
+                        Inscribirse
+                    </button>
+                    <a href="{% url 'detalles_evento' evento.id %}" class="btn-secondary">
+                        Ver más
+                    </a>
+                    
+                    <!-- Botones para compartir -->
+                    <div class="share-buttons">
+                        <button class="share-btn" data-platform="facebook">
+                            <i class="fab fa-facebook"></i>
+                        </button>
+                        <button class="share-btn" data-platform="twitter">
+                            <i class="fab fa-twitter"></i>
+                        </button>
+                        <button class="share-btn" data-platform="whatsapp">
+                            <i class="fab fa-whatsapp"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p>No hay eventos disponibles.</p>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Agrega el script -->
+{% block scripts %}
+<script src="{% static 'js/estudiantes/eventos.js' %}"></script>
+{% endblock %}
+{% endblock %}

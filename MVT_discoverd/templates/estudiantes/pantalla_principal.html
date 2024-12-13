@@ -1,0 +1,210 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DiscoVerd - Eventos Universitarios</title>
+    
+    <!-- Mantener ambos archivos CSS -->
+    <link rel="stylesheet" href="{% static 'css/estudiantes/Pantalla_P.css' %}">
+    <link rel="stylesheet" href="{% static 'css/estudiantes/chat_bot.css' %}">
+    <link rel="stylesheet" href="{% static 'css/estudiantes/scraping.css' %}">
+    <link rel="stylesheet" href="{% static 'css/estudiantes/privacy_modal.css' %}">
+    <!-- Tus otros links -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+
+<body>
+    <div class="dashboard">
+        <!-- Header -->
+        <header class="header">
+            <div class="header__container">
+                <!-- Logo Section -->
+                <div class="header__logo">
+                    <img src="{% static 'img/logos/FINESI.png' %}" alt="DiscoVerd" class="header__logo-img">
+                    <span class="header__logo-text">DiscoVerd</span>
+                </div> 
+
+                <!-- User Section -->
+                <div class="user">
+                    <!-- Navigation -->
+                    <nav class="nav">
+                        <a href="{% url 'perfil' %}" class="nav__link">
+                            <i class="fas fa-user"></i>
+                            <span class="nav__text hidden-mobile">Mi Perfil</span>
+                        </a>
+                        
+                        <a href="{% url 'mis_eventos' %}" class="nav__link">
+                            <i class="fas fa-calendar"></i>
+                            <span class="nav__text hidden-mobile">Mis Eventos</span>
+                        </a>
+
+                        <a href="{% url 'landing_organizador' %}" class="nav_link nav_link--logout">
+                            <i class="fas fa-calendar"></i>
+                            <span class="nav__text hidden-mobile">Publicar mi evento</span>
+                        </a>
+                        
+                        <a href="{% url 'landing_estudiantes' %}" class="nav_link nav_link--logout">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span class="nav__text hidden-mobile">Cerrar Sesión</span>
+                        </a>
+
+                    </nav>
+                </div>
+
+                <!-- User Info -->
+                <div class="user__avatar">
+                    {% if perfil.foto %}
+                        <img src="{{ perfil.foto.url }}" alt="Foto de perfil" class="user__avatar-img">
+                    {% else %}
+                        <span class="user__initials">{{ user.first_name|first }}</span>
+                    {% endif %}
+                </div>
+            </div>
+        </header>
+
+        <!-- Contenido principal aqui va el SCRAPING-->
+    <section>
+        <main class="main">
+            <div class="seccion-scraping">
+                        <div class="container mx-auto px-4 py-8">
+                            <header class="text-center mb-12">
+                                <h2>Eventos Universitarios</h2>
+                                <p>Última actualización: {{ timestamp }}</p>
+                            </header>
+                        
+                            <!-- Contenedor de eventos -->
+                            <div id="eventos-container">
+                                {% for evento in eventos %}
+                                <article class="evento-card">
+                                    <div class="relative">
+                                        <div class="tag-container">
+                                            <span class="universidad-tag">
+                                                {{ evento.nombre_universidad }}
+                                            </span>
+                                        </div>
+                                        {% if evento.imagen %}
+                                        <img src="{{ evento.imagen }}" alt="Imagen del evento">
+                                        {% else %}
+                                        <img src="https://picsum.photos/400/200" alt="Imagen por defecto">
+                                        {% endif %}
+                                    </div>
+                                    
+                                    <div class="p-6">
+                                        <h3>{{ evento.titulo }}</h3>
+                                        <time>{{ evento.fecha }}</time>
+                                        <p>{{ evento.descripcion }}</p>
+                                        <a href="{{ evento.url_origen }}" target="_blank">
+                                            Ver más →
+                                        </a>
+                                    </div>
+                                </article>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+            <!-- Agregar esto justo antes del for loop de eventos_organizador -->
+            <!--<div class="debug-info" style="background: #f0f0f0; padding: 10px; margin: 10px;">
+                <p>Total eventos organizador: {{ eventos_organizador|length }}</p>
+                {% for evento in eventos_organizador %}
+                    <p>Debug - Evento: {{ evento.titulo }}, Estado: {{ evento.estado }}, Fecha: {{ evento.fecha }}</p>
+                {% endfor %}
+            </div>-->
+    </section>
+            <!-- Eventos de Organizadores -->
+            <section class="eventos-organizador">
+                <div class="container">
+                    <h2 class="eventos-titulo">Eventos Publicados, Inscribete!!!</h2>
+                    
+                    <div class="eventos-grid">
+                        {% for evento in eventos_organizador %}
+                        <div class="evento-card">
+                            <div class="evento-imagen-container">
+                                {% if evento.imagen %}
+                                <img src="{{ evento.imagen.url }}" 
+                                    alt="{{ evento.titulo }}" 
+                                    class="evento-imagen">
+                                {% else %}
+                                <img src="https://picsum.photos/400/200" 
+                                    alt="Imagen por defecto" 
+                                    class="evento-imagen">
+                                {% endif %}
+                                
+                                {% if evento.estado == 'destacado' %}
+                                <div class="evento-tag">
+                                    <span>Destacado</span>
+                                </div>
+                                {% endif %}
+                            </div>
+                            
+                            <div class="evento-contenido">
+                                <h3 class="evento-titulo">{{ evento.titulo }}</h3>
+                                
+                                <div class="evento-info">
+                                    <i class="fas fa-calendar"></i>
+                                    <span>{{ evento.fecha|date:"d M Y" }} - {{ evento.hora_inicio|time:"H:i" }}</span>
+                                </div>
+                                
+                                <div class="evento-info">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>{{ evento.ubicacion }}</span>
+                                </div>
+                                
+                                <p class="evento-descripcion">{{ evento.descripcion }}</p>
+                                
+                                <div class="evento-footer">
+                                    {% if evento.cupo_maximo > 0 %}
+                                    <span class="evento-plazas">
+                                        <i class="fas fa-users"></i>
+                                        {{ evento.plazas_disponibles }} plazas disponibles
+                                    </span>
+                                    {% endif %}
+                                    
+                                    <a href="{% url 'detalles_evento' evento.id %}" 
+                                    class="evento-boton">
+                                        Ver más
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        {% empty %}
+                        <div class="no-eventos">
+                            No hay eventos próximos disponibles
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Chat Bot Section -->
+            <!-- Agregar esto al final del main en tu template -->
+            <div class="discoverd-chatbot">
+                <div id="container3D" class="discoverd-chatbot__model"></div>
+                <div class="discoverd-chatbot__interface">
+                    <div class="discoverd-chatbot__input-group">
+                        <input type="text" 
+                            id="searchInput" 
+                            class="discoverd-chatbot__input" 
+                            placeholder="Si necesitas alguna ayuda, soy tu chat-bot">
+                        <button id="searchButton" 
+                                class="discoverd-chatbot__button">
+                            Enviar
+                        </button>
+                    </div>
+                    <div id="result" class="discoverd-chatbot__result"></div>
+                </div>
+        </main>
+
+
+    <!-- Scripts necesarios -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{% static 'js/estudiantes/pantalla_principal.js' %}"></script>
+    <script type="module" src="{% static 'js/estudiantes/chat_bot_main.js' %}"></script>
+    <script src="{% static 'js/estudiantes/chat_bot_api.js' %}"></script>
+    <!-- Agregar el nuevo script del modal -->
+    <script src="{% static 'js/estudiantes/privacy_modal.js' %}"></script>
+</body>
+<!-- Agregar esto justo después del <body> -->
+</html>

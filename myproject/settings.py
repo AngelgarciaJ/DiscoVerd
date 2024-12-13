@@ -9,6 +9,9 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
+##################### lo subi hoy martes revisar
+import os
+#################
 
 from pathlib import Path
 
@@ -57,7 +60,7 @@ ROOT_URLCONF = 'myproject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'MVT_discoverd/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -65,12 +68,11 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.static',
             ],
         },
     },
 ]
-
-WSGI_APPLICATION = 'myproject.wsgi.application'
 
 
 # Database
@@ -118,8 +120,28 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+###############ESTOP TAMBIEN SE AGREGO HOY MARTES##############
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'MVT_discoverd/static'),
+    ##BASE_DIR / "static",
+    
+]
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# Crear directorios necesarios si no existen
+if not os.path.exists(MEDIA_ROOT):
+    os.makedirs(MEDIA_ROOT)
+################ LO ACABO DE AGREGARWILMER
+temp_eventos_dir = os.path.join(MEDIA_ROOT, 'temp_eventos')
+if not os.path.exists(temp_eventos_dir):
+    os.makedirs(temp_eventos_dir)
 
+
+# Asegurarse de que los directorios existan AGREGE ESTO TAMBIEN (SINO FUNCIONA ES AQUI TAMIBNE)
+os.makedirs(MEDIA_ROOT, exist_ok=True)
+os.makedirs(os.path.join(MEDIA_ROOT, 'temp_eventos'), exist_ok=True)
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
@@ -132,3 +154,17 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Redirección después de login y logout
 LOGIN_REDIRECT_URL = 'dashboard_estudiantes'
 LOGOUT_REDIRECT_URL = 'login_estudiantes'
+#### AUMENTO LO DE APP
+LOGIN_URL = '/estudiantes/login/'
+########## AUMENTE ESTO HOY MIERCOLS#####
+
+# agregado para login
+
+AUTH_USER_MODEL = 'MVT_discoverd.CustomUser'
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+]
+
+# Configuración de mensajes
+MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'

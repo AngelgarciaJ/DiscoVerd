@@ -1,85 +1,89 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
     {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro de Estudiantes - DiscoVerd</title>
+    <title>Registro Estudiantes - DiscoVerd</title>
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Estilos personalizados -->
-    <link href="{% static 'css/estudiantes/registro.css' %}" rel="stylesheet">
+    <link href="{% static 'css/estudiantes/RegistroE.css' %}" rel="stylesheet">
+    
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Lato:wght@300&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<!-- Encabezado -->
-<header class="custom-header bg-white shadow-sm">
-    <div class="container d-flex justify-content-between align-items-center py-2">
-        <a href="{% url 'landing_estudiantes' %}" class="d-flex align-items-center text-decoration-none">
-            <img src="{% static 'img/logos/FINESI.png' %}" alt="Logo" class="logo me-2">
-            <span class="fs-4 fw-bold text-primary">DiscoVerd</span>
-        </a>
-        <nav>
-            <ul class="nav">
-                <li class="nav-item"><a class="nav-link custom-nav-link" href="{% url 'landing_estudiantes' %}">Inicio</a></li>
-                <li class="nav-item"><a class="nav-link custom-nav-link" href="{% url 'login_estudiantes' %}">Iniciar Sesión</a></li>
-                <li class="nav-item"><a class="nav-link custom-nav-link" href="#">Acerca de</a></li>
-                <li class="nav-item"><a class="nav-link custom-nav-link" href="#">Eventos</a></li>
-            </ul>
-        </nav>
-    </div>
-</header>
-
-    <!-- Formulario de Registro -->
-    <section class="registro-section py-5">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-4">
-                    <h2 class="mb-4 text-center">Registro de Estudiantes</h2>
-
-                    <form method="POST">
-                        {% csrf_token %}
+    <!-- Encabezado y menú -->
+    <header class="header">
+        <div class="header-container">
+            <a href="{% url 'landing_estudiantes' %}" class="header-logo me-auto">
+                <img src="{% static 'img/logos/FINESI.png' %}" class="logo" alt="Logo DiscoVerd">
+            </a>
+            <nav class="ms-auto">
+                <ul class="nav">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'landing_estudiantes' %}">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'login_estudiantes' %}">Iniciar Sesión</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'about_events' %}">Acerca de Discoved</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'events' %}">Eventos</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Sección del formulario de registro -->
+    <main>
+        <section class="login-section d-flex align-items-center justify-content-center py-5">
+            <div class="container">
+                <div class="row g-0 shadow-lg rounded">
+                    <!-- Formulario de registro -->
+                    <div class="col-lg-6 bg-light p-5">
+                        <h3 class="mb-4 text-center">Registro de Estudiantes</h3>
                         {% if error %}
-                            <div class="alert alert-danger">{{ error }}</div>
+                            <p class="text-danger text-center">{{ error }}</p>
                         {% endif %}
-                        <div class="mb-3">
-                            <label for="nombre" class="form-label">Nombre Completo</label>
-                            <input type="text" class="form-control" id="nombre" name="nombre" required>
+                        <form method="POST">
+                            {% csrf_token %}
+                            <div class="form-group mb-3">
+                                <label for="nombre" class="form-label">Nombre Completo</label>
+                                <input type="text" class="form-control" id="nombre" name="nombre" required>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="email" class="form-label">Correo Electrónico</label>
+                                <input type="email" class="form-control" id="email" name="email" required>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="password" class="form-label">Contraseña</label>
+                                <input type="password" class="form-control" id="password" name="password" required>
+                            </div>
+                            <div class="mb-3 form-check">
+                                <input type="checkbox" class="form-check-input" id="mayor_edad" name="mayor_edad" required>
+                                <label class="form-check-label" for="mayor_edad">Soy mayor de 16 años</label>
+                            </div>
+                            <div class="botones-inferiores">
+                                <button type="submit" class="btn btn-primary w-100">Registrarse</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Imagen a la derecha -->
+                    <div class="col-lg-6 d-none d-lg-flex align-items-center">
+                        <div class="position-relative w-100 h-100">
+                            <img src="{% static 'img/estudiantes/students-250164_1280.jpg' %}" class="img-fluid w-100 h-100" alt="Imagen de estudiantes" style="object-fit: cover;">
                         </div>
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Correo Electrónico</label>
-                            <input type="email" class="form-control" id="email" name="email" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="password" class="form-label">Contraseña</label>
-                            <input type="password" class="form-control" id="password" name="password" required>
-                        </div>
-                        <div class="mb-3 form-check">
-                            <input type="checkbox" class="form-check-input" id="mayor_edad" name="mayor_edad" required>
-                            <label class="form-check-label" for="mayor_edad">Soy mayor de 18 años</label>
-                        </div>
-                        <button type="submit" class="btn btn-primary w-100">Registrarse</button>
-                    </form>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <!-- Pie de página -->
     <footer class="footer bg-dark text-white py-4">
         <div class="container text-center">
-            <ul class="list-inline">
-                <li class="list-inline-item"><a href="#" class="text-white">Facebook</a></li>
-                <li class="list-inline-item"><a href="#" class="text-white">Twitter</a></li>
-                <li class="list-inline-item"><a href="#" class="text-white">Instagram</a></li>
-            </ul>
-            <p>&copy; 2024 DiscoVerd. Todos los derechos reservados.</p>
+            <p class="mb-0">&copy; 2024 DiscoVerd. Todos los derechos reservados.</p>
         </div>
     </footer>
 
-    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

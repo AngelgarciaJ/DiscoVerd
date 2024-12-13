@@ -1,0 +1,399 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DiscoVerd - Panel de Control</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <!-- Estructura principal -->
+    <header>
+        <nav style="background-color: #626D71;" class="shadow-lg fixed w-full z-10" >
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="flex justify-between items-center h-24">
+                    <!-- Logo y nombre del sitio -->
+                    <div class="flex-shrink-0">
+                        <a href="{% url 'landing_organizador' %}" 
+                           class="flex items-center hover:opacity-80 transition-opacity">
+                            <img src="{% static 'img/logos/FINESI.png' %}" alt="Logo DiscoVerd" class="h-8 w-8 mr-2">
+                            <span class="text-2xl font-bold text-white">DiscoVerd</span>
+                        </a>
+                    </div>
+                    <!-- Menú principal -->
+                    <div class="hidden md:flex items-center space-x-8">
+                        <!-- Cambia el enlace por un botón -->
+                        <button id="politicasBtn" type="button" class="text-white-300 hover:text-white px-3 py-2">
+                            Acerca de Y politicas de uso
+                        </button>
+                        <!--<a href="#" class="text-gray-300 hover:text-white px-3 py-2">Reportes</a>-->
+                        <a href="{% url 'landing_organizador' %}" class="text-white-300 hover:text-white px-3 py-2">Volver ala pagina Inicial</a>
+                    </div>
+        
+                    <!-- Perfil y Notificaciones -->
+                    <div class="flex items-center space-x-4">
+                        <!-- Notificaciones -->
+                        <div class="relative">
+                            <button class="text-white p-2 rounded-full hover:bg-blue-800 focus:outline-none">
+                                <div class="relative">
+                                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                            d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
+                                    </svg>
+                                    {% if notificaciones_no_leidas > 0 %}
+                                    <span class="absolute -top-1 -right-1 h-4 w-4 bg-red-500 rounded-full flex items-center justify-center">
+                                        <span class="text-xs text-white">{{ notificaciones_no_leidas }}</span>
+                                    </span>
+                                    {% endif %}
+                                </div>
+                            </button>
+                        </div>
+        
+                        <!-- Perfil del usuario -->
+                        <div class="relative group">
+                            <button class="flex items-center space-x-3 text-white focus:outline-none">
+                                <div class="flex items-center space-x-3">
+                                    {% if organizador.foto %}
+                                        <img src="{{ organizador.foto.url }}" alt="Foto de perfil" 
+                                            class="h-10 w-10 rounded-full object-cover border-2 border-white">
+                                    {% else %}
+                                        <img src="{% static 'img/default-header.jpg' %}" alt="Foto por defecto" 
+                                            class="h-10 w-10 rounded-full object-cover border-2 border-white">
+                                    {% endif %}
+                                    <span class="font-medium max-w-[150px] truncate">{{ organizador.nombre_completo }}</span>
+                                </div>
+                                <svg class="w-4 h-4 text-white transition-transform group-hover:rotate-180" 
+                                     fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                </svg>
+                            </button>
+        
+                            <!-- Menú desplegable -->
+                            <div class="absolute right-0 w-48 mt-2 py-2 bg-white rounded-md shadow-xl opacity-0 invisible
+                                    group-hover:opacity-100 group-hover:visible transition-all duration-300">
+                                <a href="{% url 'mi_perfil_organizador' %}"
+                                   class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                    <i class="fas fa-user mr-2"></i> Mi Perfil
+                                </a>
+                                <!--<a href="#"
+                                   class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                    <i class="fas fa-cog mr-2"></i> Configuración
+                                </a>-->
+                                <div class="border-t border-gray-100"></div>
+                                <form method="post" action="{% url 'logout' %}" class="block">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="next" value="{% url 'landing_estudiantes' %}">
+                                    <button type="submit" 
+                                            class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                        <i class="fas fa-sign-out-alt mr-2"></i> Cerrar Sesión
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <p>Texto con separación interna (padding).</p>  
+    <main class="pt-16">
+        <!-- Encabezado de página -->
+        <section class="bg-white shadow" aria-labelledby="page-title">
+            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between">
+                    <h1 id="page-title" class="text-2xl font-bold text-gray-900">Panel de Control</h1>
+                    <button style="background-color: #626D71;" 
+                            onclick="openModal()"
+                            class="text-white px-4 py-2 rounded-md hover:bg-blue-800 flex items-center space-x-2" 
+                            aria-label="Crear nuevo evento">
+                        <svg class="h-5 w-5" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                        </svg>
+                        <span>Nuevo Evento</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contenido del dashboard -->
+        <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+            <!-- Estadísticas -->
+            <section aria-labelledby="stats-title" class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+                <h2 id="stats-title" class="sr-only">Estadísticas generales</h2>
+
+                <!-- Total Eventos -->
+                <article class="bg-white rounded-lg shadow p-6">
+                    <dl>
+                        <dt class="text-sm font-medium text-gray-600">Total Eventos</dt>
+                        <dd class="text-2xl font-bold text-gray-900">{{ total_eventos }}</dd>
+                        <dd class="mt-2 text-sm text-green-600">↑ 12% vs mes anterior</dd>
+                    </dl>
+                </article>
+
+                <!-- Eventos Activos -->
+                <article class="bg-white rounded-lg shadow p-6">
+                    <dl>
+                        <dt class="text-sm font-medium text-gray-600">Eventos Activos</dt>
+                        <dd class="text-2xl font-bold text-gray-900">{{ eventos_activos }}</dd>
+                        <dd class="mt-2 text-sm text-gray-600">3 finalizan esta semana</dd>
+                    </dl>
+                </article>
+
+                <!-- Total Participantes -->
+                <article class="bg-white rounded-lg shadow p-6">
+                    <dl>
+                        <dt class="text-sm font-medium text-gray-600">Total Participantes</dt>
+                        <dd class="text-2xl font-bold text-gray-900">{{ total_participantes }}</dd>
+                        <dd class="mt-2 text-sm text-green-600">↑ 8% vs mes anterior</dd>
+                    </dl>
+                </article>
+
+                <!-- Pendientes Aprobación -->
+                <article class="bg-white rounded-lg shadow p-6">
+                    <dl>
+                        <dt class="text-sm font-medium text-gray-600">Pendientes Aprobación</dt>
+                        <dd class="text-2xl font-bold text-gray-900">{{ pendientes_aprobacion }}</dd>
+                        <dd class="mt-2 text-sm text-red-600">Requieren atención</dd>
+                    </dl>
+                </article>
+            </section>
+
+            <!-- Grid principal -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- Próximos Eventos -->
+                <section aria-labelledby="upcoming-events-title" class="lg:col-span-2">
+                    <div class="bg-white rounded-lg shadow">
+                        <header class="p-6 border-b border-gray-200">
+                            <h2 id="upcoming-events-title" class="text-lg font-medium text-gray-900">Próximos Eventos</h2>
+                        </header>
+                        <!-- Lista de eventos -->
+                        <div class="p-6">
+                            <ul class="space-y-4" role="list">
+                                {% for evento in proximos_eventos %}
+                                <li class="flex items-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                                    <time datetime="{{ evento.fecha|date:'Y-m-d' }}" class="flex-shrink-0 h-12 w-12 flex items-center justify-center bg-blue-100 rounded-lg">
+                                        <span class="text-blue-800 font-semibold">{{ evento.fecha|date:'d' }}</span>
+                                    </time>
+                                    <div class="ml-4 flex-1">
+                                        <h3 class="text-lg font-medium text-gray-900">{{ evento.titulo }}</h3>
+                                        <p class="text-sm text-gray-600">
+                                            <time datetime="{{ evento.hora_inicio|time:'H:i' }}">{{ evento.hora_inicio|time:'H:i' }}</time> - 
+                                            <time datetime="{{ evento.hora_fin|time:'H:i' }}">{{ evento.hora_fin|time:'H:i' }}</time> • 
+                                            <span>{{ evento.ubicacion }}</span>
+                                        </p>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <!-- Badge de inscritos -->
+                                        <span class="px-2 py-1 text-xs font-medium text-green-800 bg-green-100 rounded-full">
+                                            {{ evento.inscritos }} inscritos
+                                        </span>
+                                        
+                                        <!-- Menú de acciones -->
+                                        <div class="relative" x-data="{ open: false }">
+                                            <button class="p-2 text-gray-500 hover:text-gray-700 rounded-full hover:bg-gray-200"
+                                                    @click="open = !open"
+                                                    @click.away="open = false">
+                                                <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z"/>
+                                                </svg>
+                                            </button>
+                                            
+                                            <!-- Menú desplegable -->
+                                            <div class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-10"
+                                                 x-show="open"
+                                                 x-transition:enter="transition ease-out duration-100"
+                                                 x-transition:enter-start="transform opacity-0 scale-95"
+                                                 x-transition:enter-end="transform opacity-100 scale-100"
+                                                 x-transition:leave="transition ease-in duration-75"
+                                                 x-transition:leave-start="transform opacity-100 scale-100"
+                                                 x-transition:leave-end="transform opacity-0 scale-95">
+                                                <div class="py-1">
+                                                    <!-- Ver detalles -->
+                                                    <button onclick="verDetallesEvento('{{ evento.id }}')"
+                                                            class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center">
+                                                        <svg class="mr-3 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                                                        </svg>
+                                                        Ver detalles
+                                                    </button>
+                                                    
+                                                    <!-- Editar -->
+                                                    <button onclick="editarEvento('{{ evento.id }}')"
+                                                            class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center">
+                                                        <svg class="mr-3 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                                                        </svg>
+                                                        Editar
+                                                    </button>
+                                                    
+                                                    <!-- Eliminar -->
+                                                    <button onclick="confirmarEliminarEvento('{{ evento.id }}')"
+                                                            class="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 flex items-center">
+                                                        <svg class="mr-3 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                                                        </svg>
+                                                        Eliminar
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                {% empty %}
+                                <li class="text-center text-gray-500 py-4">No hay próximos eventos.</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+
+                <!-- Acciones Rápidas -->
+                <section aria-labelledby="quick-actions-title" class="space-y-6">
+                    <div class="bg-white rounded-lg shadow">
+                        <header class="p-6 border-b border-gray-200">
+                            <h2 id="quick-actions-title" class="text-lg font-medium text-gray-900">Acciones Rápidas</h2>
+                        </header>
+                        <div class="p-6">
+                            <div class="grid grid-cols-2 gap-4">
+                                <button type="button" 
+                                        onclick="openModal()"
+                                        class="p-4 border border-gray-200 rounded-lg hover:bg-gray-50 text-center"
+                                        aria-label="Crear nuevo evento">
+                                    <svg class="h-6 w-6 mx-auto text-gray-600" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                                    </svg>
+                                    <span class="mt-2 block text-sm font-medium text-gray-900">Nuevo Evento</span>
+                                </button>
+                                <!-- Más acciones rápidas aquí -->
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-[#626D71] border-t border-gray-200 mt-8">
+        <div class="max-w-30xl mx-auto py-10 px-10 sm:px-60 lg:px-30">
+            <p class="text-center text-sm text-gray-100">
+                © 2024 DiscoVerdEventos. Sistema de Gestión de Eventos,Todos los derechos reservados.
+            </p>
+        </div>
+    </footer>
+    {% include 'organizador/modal_crear_evento.html' %}
+    <!-- Incluir el modal de políticas -->
+    {% include 'organizador/modal_politicas.html' %}
+    <!-- Scripts -->
+    <script src="{% static 'js/organizador/main.js' %}"></script>
+    <script src="{% static 'js/organizador/evento.js' %}"></script>
+    <!-- Scripts -->
+    <script src="{% static 'js/organizador/politicas.js' %}"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Inicializar el evento del formulario
+            const formCrearEvento = document.getElementById('formCrearEvento');
+            if (formCrearEvento) {
+                formCrearEvento.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    // Tu lógica para manejar el envío del formulario
+                    console.log('Formulario enviado');
+                });
+            }
+        
+            // Inicializar los botones de nuevo evento
+            const newEventButtons = document.querySelectorAll('[aria-label="Crear nuevo evento"]');
+            newEventButtons.forEach(button => {
+                button.addEventListener('click', openModal);
+            });
+        });
+        
+        function openModal() {
+            const modal = document.getElementById('modalCrearEvento');
+            if (modal) {
+                modal.classList.remove('hidden');
+            }
+        }
+        
+        function closeModal() {
+            const modal = document.getElementById('modalCrearEvento');
+            if (modal) {
+                modal.classList.add('hidden');
+            }
+        }
+        
+        // Cerrar modal al hacer clic fuera de él
+        window.addEventListener('click', function(event) {
+            const modal = document.getElementById('modalCrearEvento');
+            if (event.target === modal) {
+                closeModal();
+            }
+
+            function verDetallesEvento(eventoId) {
+                // Abrir modal de detalles
+                fetch(`/api/eventos/${eventoId}/`)
+                    .then(response => response.json())
+                    .then(data => {
+                        // Aquí puedes mostrar los detalles en un modal
+                        console.log('Detalles del evento:', data);
+                        // Implementa la lógica para mostrar el modal con los detalles
+                    });
+            }
+            
+            function editarEvento(eventoId) {
+                // Obtener datos del evento y abrir modal de edición
+                fetch(`/api/eventos/${eventoId}/`)
+                    .then(response => response.json())
+                    .then(data => {
+                        // Rellenar el formulario del modal con los datos
+                        document.getElementById('modalCrearEvento').classList.remove('hidden');
+                        // Rellenar los campos del formulario
+                        document.getElementById('titulo').value = data.titulo;
+                        document.getElementById('fecha').value = data.fecha;
+                        // ... rellenar resto de campos
+                    });
+            }
+            
+            function confirmarEliminarEvento(eventoId) {
+                if (confirm('¿Estás seguro de que deseas eliminar este evento?')) {
+                    eliminarEvento(eventoId);
+                }
+            }
+            
+            function eliminarEvento(eventoId) {
+                fetch(`/api/eventos/${eventoId}/`, {
+                    method: 'DELETE',
+                    headers: {
+                        'X-CSRFToken': getCookie('csrftoken')
+                    }
+                })
+                .then(response => {
+                    if (response.ok) {
+                        // Recargar la página o actualizar la lista de eventos
+                        window.location.reload();
+                    }
+                });
+            }
+            
+            // Función auxiliar para obtener el token CSRF
+            function getCookie(name) {
+                let cookieValue = null;
+                if (document.cookie && document.cookie !== '') {
+                    const cookies = document.cookie.split(';');
+                    for (let i = 0; i < cookies.length; i++) {
+                        const cookie = cookies[i].trim();
+                        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+                return cookieValue;
+            }
+        });
+        </script>
+        <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+        <!-- En la sección de scripts -->
+</body>
+</html>

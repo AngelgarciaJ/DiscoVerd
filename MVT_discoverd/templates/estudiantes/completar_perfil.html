@@ -1,0 +1,155 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Completar Perfil Académico - DiscoVerd</title>
+    <link rel="stylesheet" href="{% static 'css/estudiantes/completar_perfil.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="profile-container">
+        <div class="profile-header">
+            <h1 class="profile-title">Completa tu Perfil Académico</h1>
+            <p class="profile-subtitle">Personaliza tu experiencia académica en DiscoVerd</p>
+        </div>
+
+        <form id="profile-form" method="post" action="{% url 'completar_perfil' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <!-- Sección de Foto -->
+            <!-- Sección de Foto -->
+            <div class="form-section photo-section">
+                <h2>Foto de Perfil Académica</h2>
+                <div class="profile-image-section">
+                    <div class="profile-image-wrapper">
+                        <div class="profile-image-container" onclick="document.getElementById('header-upload').click()">
+                            {% if perfil.foto %}
+                                <img id="header-preview" src="{{ perfil.foto.url }}" alt="Foto de perfil">
+                            {% else %}
+                                <img id="header-preview" src="{% static 'img/default-profile.jpg' %}" alt="Foto de perfil">
+                            {% endif %}
+                            <div class="image-upload-overlay">
+                                <div class="upload-content">
+                                    <i class="fas fa-camera"></i>
+                                    <span>Cargar foto</span>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="file" 
+                            id="header-upload" 
+                            name="foto" 
+                            accept="image/jpeg,image/png,image/webp" 
+                            class="hidden" 
+                            onchange="previewImage(event)">
+                    </div>
+                    <div class="image-requirements">
+                        <p class="upload-hint"><i class="fas fa-info-circle"></i> Foto formal/académica (JPG, PNG, WEBP)</p>
+                        <p class="upload-hint"><i class="fas fa-check-circle"></i> Máximo 5MB</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección de Intereses Académicos -->
+            <div class="form-section">
+                <h2>Áreas de Interés Académico</h2>
+                <p class="section-description">Selecciona las áreas que más te interesan para eventos académicos</p>
+                <div class="interests-container">
+                    <div class="interest-tag" data-value="ciencias_computacion">
+                        <i class="fas fa-laptop-code"></i>
+                        <span>Ciencias de la Computación</span>
+                    </div>
+                    <div class="interest-tag" data-value="investigacion">
+                        <i class="fas fa-microscope"></i>
+                        <span>Investigación Académica</span>
+                    </div>
+                    <div class="interest-tag" data-value="innovacion">
+                        <i class="fas fa-lightbulb"></i>
+                        <span>Innovación Tecnológica</span>
+                    </div>
+                    <div class="interest-tag" data-value="desarrollo">
+                        <i class="fas fa-code"></i>
+                        <span>Desarrollo de Software</span>
+                    </div>
+                    <div class="interest-tag" data-value="ciencia_datos">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>Ciencia de Datos</span>
+                    </div>
+                    <div class="interest-tag" data-value="inteligencia_artificial">
+                        <i class="fas fa-robot"></i>
+                        <span>Inteligencia Artificial</span>
+                    </div>
+                </div>
+                <input type="hidden" name="intereses" id="intereses-hidden">
+            </div>
+
+            <!-- Sección de Biografía -->
+            <div class="form-section">
+                <h2>Biografía Académica</h2>
+                <p class="section-description">Describe tu trayectoria y objetivos académicos</p>
+                <div class="textarea-container">
+                    <textarea 
+                        id="biografia" 
+                        name="biografia" 
+                        maxlength="300" 
+                        placeholder="Comparte tu experiencia académica, áreas de especialización y metas profesionales..."
+                        required></textarea>
+                    <div class="char-counter">0/300 caracteres</div>
+                </div>
+            </div>
+
+            <!-- Sección de Habilidades -->
+            <div class="form-section">
+                <h2>Habilidades Técnicas y Académicas</h2>
+                <p class="section-description">Agrega tus habilidades más relevantes</p>
+                <div class="skills-input-container">
+                    <div class="skills-input-wrapper">
+                        <input 
+                            type="text" 
+                            id="habilidades" 
+                            placeholder="Ej: Programación Java, Análisis de Datos..."
+                            class="skills-input">
+                        <button type="button" class="add-skill-btn" onclick="addHabilidadFromInput()">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                    <div class="skills-tags"></div>
+                </div>
+            </div>
+
+            <!-- Enlaces Profesionales (Opcional) -->
+            <div class="form-section optional-section">
+                <h2>
+                    Enlaces Profesionales
+                    <span class="optional-tag">(Opcional)</span>
+                </h2>
+                <p class="section-description">Conecta tus perfiles profesionales</p>
+                <div class="social-links">
+                    <div class="input-group">
+                        <i class="fab fa-linkedin"></i>
+                        <input type="url" name="linkedin" placeholder="URL de tu perfil de LinkedIn">
+                    </div>
+                    <div class="input-group">
+                        <i class="fab fa-github"></i>
+                        <input type="url" name="github" placeholder="URL de tu perfil de GitHub">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botón de envío -->
+            <div class="submit-container">
+                <button type="submit" class="submit-button" id="submitBtn">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Completar Perfil</span>
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Notificaciones -->
+    <div id="notification-container"></div>
+
+    <script src="{% static 'js/estudiantes/completar_perfil.js' %}"></script>
+</body>
+</html>
